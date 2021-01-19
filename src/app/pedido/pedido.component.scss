@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.procura{
+    border-width: 0.80vh;
+    border-color: gray;
+    border-style: solid;
+    width: 30.20vw;
+    min-height: 88vh;
+}
+
+.pedido{
+    width: 58vw;
+    min-height: 88vh;
+}
+
+.pagination{
+   position: absolute;
+   bottom: 0;
+}
+
+li{
+    padding-right: 15px;
+}

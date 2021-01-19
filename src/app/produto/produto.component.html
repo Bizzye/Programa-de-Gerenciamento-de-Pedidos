@@ -1,0 +1,59 @@
+<div class="container">
+    <div>
+        <table class="table" style="width: 60vw;">
+            <thead>
+                <tr class="tablel">
+                    <th scope="col">Nome</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tr" *ngFor="let user of users; index as i">
+                        <td><button type="button" class="all" (click)="choose(user.id)" >{{ user.nome1 + ' ' + (user.nome2 ? user.nome2 : '') + ' ' + (user.nome3 ? user.nome3 : '')  }}</button></td>
+                        <td>{{ user.telefone }}</td>
+                        <td>{{ user.endereco }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="usuario==true">
+                <table>
+                    <tbody>
+                        <tr *ngFor="let dm of dms; index as i">
+                            <td><button (click)="entregador(dm.id)">{{dm.name}}</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+        <input [(ngModel)]="entrega" type="number" placeholder="Valor da entrega" />
+    </div>
+    <div *ngIf="produtosCarrinho==true">   
+        <table class="table" style="width: 60vw;">
+            <thead>
+                <tr class="tablel">
+                    <th scope="col">Nome</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">adicionar no carrinho</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tr" *ngFor="let product of products; index as i">
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.type }}</td>
+                    <td>R${{ product.preco | number }}</td>
+                    <td><button (click)="addItem(product)">Adicionar</button></td>
+                </tr>
+                
+            </tbody>
+        </table>
+        <div *ngFor="let produto of produtos; index as i">
+            <p *ngIf="produto.type=='prato'"> {{ produto.name }}</p>
+            <p *ngIf="produto.type=='adicional'">Adicional de {{ produto.name }}</p>
+            <p *ngIf="produto.type=='bebida'"> {{ produto.name }}</p>
+        </div>
+        <input type="text" placeholder="Desconto"/>
+        <button type="button" (click)="addCarrinho()"> adicionar produto ao carrinho </button>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+Armazena, Adiciona, Edita e remove Dados
+	-Pesquisa por telefone ou por Nome (Capaz de não ter telefone)
+	-Armazena:
+		Nome
+		Telefone
+		Endereço
+		Ponto de referência
+		Desconto
+
+Cárdapio
+	-Quantidade Disponível
+
+	-Tipo de batatas e Batata "Monte seu sabor"
+		-Capaz de remover
+
+	-Extras
+		-Capaz de remover
+
+	-Tipo de adicional
+		Bebida, Porção	
+
+	-Observações
+
+	-Taxas de entrega
+
+Impreensão de dados ( 3 vias ) 
+	-Pedido
+	-Nome
+	-Enderenço 
+	-Forma de pagamento
+	-Ponto de referência
+	-Troco
+	-Telefone
+	-Logo do restaurante
+	-Data do pedido
+	-Nome do Entregador
+	-Ifood
+		-Se está pago
+	-Total
+
+Vendas
+	-Total do dia 
+		-Dinheiro
+		-Cartão
+		-Quantidade de tipos de batata vendidas
+		-Quantidade de batatas
+	-Total do mês
+		-Dinheiro
+		-Cartão
+		-Quantidade de tipos de batata vendidas
+		-Quantidade de batatas
+		-Desconto do Ifood
+	-Total do ano (?)
+		-Dinheiro
+		-Cartão
+		-Quantidade de tipos de batata vendidas
+		-Quantidade de batatas

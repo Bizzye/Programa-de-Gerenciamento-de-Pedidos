@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="adicionarItem">
+        <h3>Adicionar Itens</h3>
+            <div class="form">
+                <input [(ngModel)]="name" type="text" placeholder="Nome" />
+                <input [(ngModel)]="preco" type="number" placeholder="Preço" />
+                <select [(ngModel)]="type">Tipo:
+                    <option value="prato">Prato</option>
+                    <option value="adicional">Adicional</option>
+                    <option value="bebida">Bebidas</option>
+                </select>
+                <div class="button" (click)="addProduct()">Adicionar</div>
+            </div>
+    </div>
+    <div>
+        <h1>Pratos: </h1>
+            <table class="table" style="width: 60vw;">
+                <thead>
+                    <tr class="tablel">
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr" *ngFor="let product of productsP; index as i">
+                        <td>{{ product.name }}</td>
+                        <td>R${{ product.preco | number }}</td>
+                        <td> <button type="button" (click)="removeProduct(product.id)">Remover</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h1>Adicionais: </h1>
+            <table class="table" style="width: 60vw;">
+                <thead>
+                    <tr class="tablel">
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr" *ngFor="let product of productsA; index as i">
+                        <td>{{ product.name }}</td>
+                        <td>R${{ product.preco | number }}</td>
+                        <td> <button type="button" (click)="removeProduct(product.id)">Remover</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h1>Bebidas: </h1>
+            <table class="table" style="width: 60vw;">
+                <thead>
+                    <tr class="tablel">
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr" *ngFor="let product of productsB; index as i">
+                        <td>{{ product.name }}</td>
+                        <td>R${{ product.preco | number }}</td>
+                        <td> <button type="button" (click)="removeProduct(product.id)">Remover</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+</div>

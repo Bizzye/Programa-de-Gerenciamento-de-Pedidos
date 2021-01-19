@@ -1,0 +1,51 @@
+.container {
+    margin-top: 3vh;
+    margin-left: 20vh;
+    display: flex;
+    flex-direction: column;
+}
+.form {
+    font-size: 1.2vw;
+    display: flex;
+    flex-direction: row ;
+    margin-bottom: 2.5vw;
+    input, select {
+        margin-right: 2vw;
+        color: white;
+        background-color: #1f1d1d;
+        border: 1px solid white;
+        border-radius: 20px;
+        padding-left: 5px;
+    }
+}
+
+.button {
+    text-align: center;
+    background-color:rgb(255, 94, 0);
+    padding: 1vw;
+    color: white;
+    border-radius: 20px;
+}
+
+button {
+    text-align: center;
+    background-color:rgb(255, 94, 0);
+    padding: 0.5vw;
+    color: white;
+    border-radius: 20px;
+    border: none;
+}
+
+.item {
+    font-size: 1.8vw;
+
+}
+
+.tablel{
+    color:white;
+    margin-top: 2vw;
+}
+
+.tr{
+    color:white;
+}
