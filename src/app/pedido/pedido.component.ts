@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { CarrinhoService } from '../services/carrinho.service';
 import { PaginatorService } from '../services/paginator.service';
+import { ProductsService } from '../services/products.service';
+import { UserService } from '../services/user.service';
+
 
 @Component({
   selector: 'app-pedido',
@@ -14,18 +17,29 @@ export class PedidoComponent implements OnInit {
   private allItems: any = [];
   // Pagination object
   pagination: any = {};
-
   // Paged items
   pagedItems: any[];
 
-  constructor(private carinhoService: CarrinhoService, private paginatorService: PaginatorService) { }
+  products:{id, name, type, preco};
+  users:{id, nome1, nome2, nome3, endereco, telefone};
+  orders: {id, user: {}, vEntrega, vTotal, entregador, pedido: {}, desconto, datahora:{} };
+
+  constructor(private carinhoService: CarrinhoService, private paginatorService: PaginatorService,private productsService: ProductsService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.carinhoService.getOrders().then((orders: any) => {
       this.allItems = orders;
+      this.orders = orders;
       this.setPage(1); 
       console.log(this.allItems);
       console.log(this.pagedItems);
+    });
+    this.productsService.getProducts().then((products: any) => {
+      this.products = products;
+      console.log(this.products);
+    });
+    this.userService.getUsers().then((users: any ) => {
+      this.users = users;
     });
   }
   setPage(page: number) {

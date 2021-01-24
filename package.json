@@ -27,6 +27,7 @@
     "angular-paginator": "^6.0.0",
     "bootstrap": "^4.5.3",
     "firebase": "^7.20.0",
+    "moment": "^2.29.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

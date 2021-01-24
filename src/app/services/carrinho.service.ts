@@ -38,14 +38,14 @@ export class CarrinhoService {
     });
   }
 
-  limpaCarrinho() {
-    this.listaProdutos = [];
-    this.produtos.next([]);
-  }
-
-  addProduto(produto) {
-    console.log(produto, '<=== produto');
-      this.listaProdutos.push(produto);
-      this.produtos.next(this.listaProdutos);
+  async insertorder(body) {
+    try {
+      let id = new Date().getTime().toString();
+      body.id = id
+      return await this.fire.collection('orders').doc(id).set(body);
+    } catch (err) {
+      console.log(err)
+      return err
     }
+  }
 }
