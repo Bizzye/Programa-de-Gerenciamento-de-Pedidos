@@ -23,7 +23,10 @@ export class PedidoComponent implements OnInit {
   products:{id, name, type, preco};
   users:{id, nome1, nome2, nome3, endereco, telefone};
   orders: {id, user: {}, vEntrega, vTotal, entregador, pedido: {}, desconto, datahora:{} };
-
+  
+  public showOrder= false;
+  public order:{};
+  
   constructor(private carinhoService: CarrinhoService, private paginatorService: PaginatorService,private productsService: ProductsService, private userService: UserService) { }
 
   ngOnInit(): void {
@@ -52,6 +55,15 @@ export class PedidoComponent implements OnInit {
 
     // Get current page of items
     this.pagedItems = this.allItems.slice(this.pagination.startIndex, this.pagination.endIndex + 1);
+  }
+
+  choose(order){
+    if(this.order = order){
+      this.order = {};
+    }
+    this.showOrder = true
+    this.order = order
+    console.log(this.order);
   }
 
 }
