@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProdutoComponent } from './produto/produto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { VisupedidoComponent } from './pedido/visupedido/visupedido.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     UsersComponent,
     CardapioComponent,
     PedidoComponent,
-    ProdutoComponent
+    ProdutoComponent,
+    VisupedidoComponent
   ],
   imports: [
     BrowserModule,

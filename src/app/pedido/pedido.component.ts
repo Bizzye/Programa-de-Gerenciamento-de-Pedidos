@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { CarrinhoService } from '../services/carrinho.service';
 import { PaginatorService } from '../services/paginator.service';
@@ -24,8 +24,8 @@ export class PedidoComponent implements OnInit {
   users:{id, nome1, nome2, nome3, endereco, telefone};
   orders: {id, user: {}, vEntrega, vTotal, entregador, pedido: {}, desconto, datahora:{} };
   
-  public showOrder= false;
-  public order:{};
+  public showOrder = false;
+  @Input() order:{id, user: {}, vEntrega, vTotal, entregador, pedido: {}, desconto, datahora:{}};
   
   constructor(private carinhoService: CarrinhoService, private paginatorService: PaginatorService,private productsService: ProductsService, private userService: UserService) { }
 
@@ -57,13 +57,17 @@ export class PedidoComponent implements OnInit {
     this.pagedItems = this.allItems.slice(this.pagination.startIndex, this.pagination.endIndex + 1);
   }
 
-  choose(order){
-    if(this.order = order){
-      this.order = {};
+  choose(i){
+    if(this.order != this.pagedItems[i]){
+      this.showOrder = false;
+      console.log('eu fiz')
     }
     this.showOrder = true
-    this.order = order
+    this.order = (this.pagedItems[i])
     console.log(this.order);
+  }
+  fecha(){
+    this.showOrder = false;
   }
 
 }

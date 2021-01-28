@@ -84,6 +84,7 @@ export class UserService {
   }
 
   searchUserByPhone(phone) {
+    phone = parseInt(phone, 10);
     return new Promise((resolve, reject) => {
       this.fire.collection('users').ref.where('phone', '==', phone).get().then(users => {
         let usersData = [];

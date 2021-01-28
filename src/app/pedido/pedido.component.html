@@ -7,7 +7,7 @@
                                                 <tr *ngFor="let item of pagedItems; index as i">
                                                 <td>{{ item.id }}</td>
                                                 <td>{{ item.user.nome1 }} </td>
-                                                <td><button type="button" (click)="choose(item)">Ver Pedido</button></td>
+                                                <td><button type="button" (click)="choose(i)">Ver Pedido</button></td>
                                                 </tr>
                                         </tbody>
                                 </table>
@@ -33,8 +33,7 @@
                 </div>
         </div>
         <div class="pedido" *ngIf="showOrder==true">
-                <p>{{order.user.nome1}}</p>
-                <!--<p>{{order.entregador}}</p>-->
-                <!--<p>{{order.vTotal}}</p>-->
+            <app-visupedido [choose]="order"></app-visupedido>
+            <button type="reset" (click)="fecha()">X</button>
         </div>
 </div>

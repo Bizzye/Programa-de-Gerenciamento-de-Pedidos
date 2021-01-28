@@ -28,6 +28,9 @@ export class ProdutoComponent implements OnInit {
   public desconto: number = 0;
   c: number = 0;
   data = new Date();
+  public cliente: string = '';
+  public searchUsers: {};
+  public showAll:boolean = true;
 
   constructor(private productsService: ProductsService, private userService: UserService, private carrinhoS: CarrinhoService) { }
 
@@ -60,7 +63,7 @@ export class ProdutoComponent implements OnInit {
       this.vTotal = this.vTotal + product.preco + this.entrega + this.desconto ;
       this.produtos.push(product);
       console.log(this.produtos);
-      
+  
     };
     
     addCarrinho() {
@@ -80,7 +83,26 @@ export class ProdutoComponent implements OnInit {
       this.carrinhoS.insertorder(this.pedidoF);
     };
 
-
+    procura(){
+      if(this.cliente.length > 0){
+        if(!parseInt(this.cliente)){
+            this.userService.searchUserByName(this.cliente).then((Users: any ) => {
+              this.searchUsers = Users;
+              console.log(this.searchUsers);
+              this.showAll = false;
+            });
+          } else if(parseInt(this.cliente)){
+            this.userService.searchUserByPhone(this.cliente).then((Users: any ) => {
+              this.searchUsers = Users;
+              console.log(this.cliente);
+              console.log(this.searchUsers);
+              this.showAll = false;
+            });}
+        } else{
+          this.showAll = true;
+        }
+      }
+      
     excluiProduto(index) {
           this.produtos.splice(index, 1);
           this.carrinhoS.produtos.next(this.produtos);

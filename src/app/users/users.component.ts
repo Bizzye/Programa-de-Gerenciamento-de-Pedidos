@@ -11,13 +11,20 @@ import { sortAndDeduplicateDiagnostics } from 'typescript';
 export class UsersComponent implements OnInit {
 
   public endereco: string = '';
-  public telefone: number;
+  public phone: number;
   public nome: string  = '';
-  public users: { nome1, nome2, nome3, endereco, telefone, id };
+  public users: { nome1, nome2, nome3, endereco, phone, id };
   public splitado = [];
   public teste: string;
+  public cliente: string = '';
+  public searchUsers: {};
+  public showAll: boolean = true;
 
-  constructor(private userService: UserService) { }
+  
+
+  constructor(private userService: UserService) { 
+    
+  }
 
   ngOnInit(): void {
     this.userService.getUsers().then((Users: any) => {
@@ -46,7 +53,7 @@ export class UsersComponent implements OnInit {
       nome2, 
       nome3,
       endereco: this.endereco,
-      telefone: this.telefone
+      phone: this.phone
     };
 
     this.userService.insertUser(User).then(d => {
@@ -55,6 +62,26 @@ export class UsersComponent implements OnInit {
       });
     });
 
+  }
+
+  procura(){
+  if(this.cliente.length > 0){
+    if(!parseInt(this.cliente)){
+        this.userService.searchUserByName(this.cliente).then((Users: any ) => {
+          this.searchUsers = Users;
+          console.log(this.searchUsers);
+          this.showAll = false;
+        });
+      } else if(parseInt(this.cliente)){
+        this.userService.searchUserByPhone(this.cliente).then((Users: any ) => {
+          this.searchUsers = Users;
+          console.log(this.cliente);
+          console.log(this.searchUsers);
+          this.showAll = false;
+        });}
+    } else{
+      this.showAll = true;
+    }
   }
 
   removeUser(id) {
@@ -67,4 +94,5 @@ export class UsersComponent implements OnInit {
       });
     });
   }
+  
 }
