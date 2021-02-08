@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Hakunapp": {
+    "hakunapp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Hakunapp",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Hakunapp:build"
+            "browserTarget": "hakunapp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Hakunapp:build:production"
+              "browserTarget": "hakunapp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Hakunapp:build"
+            "browserTarget": "hakunapp:build"
           }
         },
         "test": {
@@ -116,16 +116,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Hakunapp:serve"
+            "devServerTarget": "hakunapp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Hakunapp:serve:production"
+              "devServerTarget": "hakunapp:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "Hakunapp"
+  "defaultProject": "hakunapp"
 }

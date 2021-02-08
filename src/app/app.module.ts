@@ -16,6 +16,7 @@ import { ProdutoComponent } from './produto/produto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { VisupedidoComponent } from './pedido/visupedido/visupedido.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { VisupedidoComponent } from './pedido/visupedido/visupedido.component';
     FormsModule,
     NgbModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatStepperModule
   ],
   providers: [],
   exports:[ ],

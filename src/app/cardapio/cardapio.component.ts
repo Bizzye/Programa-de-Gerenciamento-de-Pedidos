@@ -44,20 +44,30 @@ export class CardapioComponent implements OnInit {
     };
 
     this.productsService.insertProduct(product).then(d => {
-      this.productsService.getProducts().then((products: any) => {
-        this.products = products;
-      })
-    });
-
+      this.productsService.getProductsB().then((products: any) => {
+        this.productsB = products;
+        this.productsService.getProductsP().then((products: any) => {
+          this.productsP = products;
+          this.productsService.getProductsA().then((products: any) => {
+            this.productsA = products;
+          });
+        });
+      });
+    })
   }
  
   removeProduct(id) {
 
     this.productsService.removeProduct(id).then(d => {
-      this.productsService.getProducts().then((products: any) => {
-        this.products = products;
-        console.log(this.products);
+      this.productsService.getProductsB().then((products: any) => {
+        this.productsB = products;
+        this.productsService.getProductsP().then((products: any) => {
+          this.productsP = products;
+          this.productsService.getProductsA().then((products: any) => {
+            this.productsA = products;
+          });
+        });
       });
-    });
+    })
   }
 }
