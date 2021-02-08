@@ -22,7 +22,7 @@ export class ProdutoComponent implements OnInit {
   users: { nome1, nome2, nome3, endereco, telefone };
   public produtos: any[] = [];
   public entrega: number = 0 ;
-  public user: string;
+  public user:{ nome1, nome2, nome3, endereco, telefone };
   public vTotal: number = 0;
   public pedido: {};
   public pedidoF: {user: {}, vEntrega, vTotal, pedido: {}, desconto, datahora:{} };
