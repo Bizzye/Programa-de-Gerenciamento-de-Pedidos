@@ -138,11 +138,11 @@ export class ProdutoComponent implements OnInit {
       {type: 'text', value: 'Pedido:',css: {"font-size": "18px", "margin":"10px"}},
       {type: 'text', value: produtos,css: {"font-size": "22px", "margin":"5px"}},
       {type: 'text', value: 'Taxa de Entrega:',css: {"font-size": "18px", "margin":"30px"}},
-      //{type: 'text', value: this.entrega,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: this.entrega,css: {"font-size": "22px", "margin":"5px"}},
       {type: 'text', value: 'Forma de Pagamento:',css: {"font-size": "18px", "margin":"30px"}},
       //{type: 'text', value: this.payment,css: {"font-size": "22px", "margin":"5px"}},
       {type: 'text', value: 'Total:',css: {"font-size": "18px", "margin":"30px"}},
-      //{type: 'text', value: this.vTotal,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: this.vTotal,css: {"font-size": "22px", "margin":"5px"}},
       ];
      
       this.renderService.send('print',JSON.stringify(data));
