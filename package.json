@@ -1,14 +1,17 @@
 {
   "name": "hakunapp",
-  "version": "0.0.0",
+  "productName": "Hakunapp Pedido",
+  "version": "0.1.0",
   "main": "main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "win64": "electron-packager . myApp --overwrite --platform=win32 --arch=x64",
+    "win32": "electron-packager . myApp --platform=win32 --arch=ia32",
+    "build": "electron-packager . --all",
     "start:electron": "ng build --base-href ./ && electron ."
   },
   "private": true,
@@ -39,7 +42,13 @@
     "stream": "0.0.2",
     "timers": "^0.1.1",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "ng-electron-devkit": "^0.11.0",
+    "protractor": "~7.0.0",
+    "sqlite-sync": "^0.2.1",
+    "ts-node": "~8.3.0",
+    "tslint": "~6.1.0",
+    "typescript": "~4.0.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.1",
@@ -48,18 +57,20 @@
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
+    "angular": "^1.5.1",
+    "angular-route": "^1.5.1",
+    "angular-utils-pagination": "^0.11.0",
     "codelyzer": "^6.0.0",
+    "electron-packager": "^6.0.2",
+    "electron-prebuilt": "^0.36.12",
+    "electron-winstaller": "^4.0.2",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
+    "jquery": "^2.2.2",
     "karma": "~5.0.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "^1.5.0",
-    "ng-electron-devkit": "^0.11.0",
-    "protractor": "~7.0.0",
-    "ts-node": "~8.3.0",
-    "tslint": "~6.1.0",
-    "typescript": "~4.0.2"
+    "karma-jasmine-html-reporter": "^1.5.0"
   }
 }

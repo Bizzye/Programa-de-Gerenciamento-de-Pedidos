@@ -1,45 +1,60 @@
 <div class="container">
-    <mat-vertical-stepper [linear]="isLinear" #stepper>
-        <mat-step label="Step 1">
+    <button (click)="print()">Só o cardapio</button>
+    ]<button (click)="printW()">Só o Script</button>
+    <mat-vertical-stepper [linear]="isLinear" #stepper class="stepper">
+        <mat-step label="Passo 1" class="steplabel">
             <input [(ngModel)]="cliente" type="search" placeholder="Pesquise o cliente">
-            <button (click)="procura()">Pesquisar</button>
+            <button class="search" (click)="procura()">Pesquisar</button>
+            <ul class="desespero" *ngIf="showAll==false">
+                <li>Nome</li>
+                <li>Telefone</li>
+                <li>Endereço</li>
+                <li>Ponto de referência</li>
+            </ul>
                 <table *ngIf="showAll==false" class="table" style="width: 60vw;">
-                    <thead>
+                    <!--<thead>
                         <tr class="tablel">
                             <th scope="col">Nome</th>
                             <th scope="col">Telefone</th>
                             <th scope="col">Endereço</th>
                         </tr>
-                    </thead>
+                    </thead>-->
                     <tbody>
                         <tr class="tr" *ngFor="let user of searchUsers; index as i">
-                            <td><button type="button" class="all" (click)="choose(user)" >{{ user.nome1 + ' ' + (user.nome2 ? user.nome2 : '') + ' ' + (user.nome3 ? user.nome3 : '')  }}</button></td>
+                            <button type="button" class="user" (click)="choose(user)" ><td>{{ user.nome1 + ' ' + (user.nome2 ? user.nome2 : '') + ' ' + (user.nome3 ? user.nome3 : '')  }}</td>
                             <td>{{ user.phone }}</td>
                             <td>{{ user.endereco }}</td>
+                            <td>{{ user.ref }}</td></button>
                         </tr>
                     </tbody>
                 </table>
+                <ul class="desespero" *ngIf="showAll==true">
+                    <li>Nome</li>
+                    <li>Telefone</li>
+                    <li>Endereço</li>
+                    <li>Ponto de referência</li>
+                </ul>
             <table *ngIf="showAll==true" class="table" style="width: 60vw;">
-                <thead>
+                <!--<thead>
                     <tr class="tablel">
                         <th scope="col">Nome</th>
                         <th scope="col">Telefone</th>
                         <th scope="col">Endereço</th>
+                        <th scope="col">Ponto de referência</th>
                     </tr>
-                </thead>
+                </thead>-->
                 <tbody>
                     <tr class="tr" *ngFor="let user of users; index as i">
-                        <td><button type="button" class="all" (click)="choose(user)" >{{ user.nome1 + ' ' + (user.nome2 ? user.nome2 : '') + ' ' + (user.nome3 ? user.nome3 : '')  }}</button></td>
+                        <button type="button" class="user" (click)="choose(user)" ><td>{{ user.nome1 + ' ' + (user.nome2 ? user.nome2 : '') + ' ' + (user.nome3 ? user.nome3 : '')  }}</td>
                         <td>{{ user.phone }}</td>
                         <td>{{ user.endereco }}</td>
+                        <td>{{ user.ref }}</td></button>
                     </tr>
                 </tbody>
             </table>
-            <div>
-                <button mat-button matStepperNext [disabled]="!user">Next</button>
-            </div>
+            <input [(ngModel)]="entrega" type="number" placeholder="Valor da entrega" />
         </mat-step>
-        <mat-step label="Step 2">
+        <mat-step label="Passo 2" class="steplabel">
             <h1>Pratos: </h1>
                 <table class="table" style="width: 60vw;">
                     <thead>
@@ -95,29 +110,31 @@
                     </tbody>
                 </table>
         </mat-step>
-        <mat-step label="Step 3">
-            <input [(ngModel)]="desconto" type="number" placeholder="Desconto"/>
-            <input [(ngModel)]="entrega" type="number" placeholder="Valor da entrega" />
-            <button type="button" (click)="addCarrinho()"> adicionar produto ao carrinho </button>
-            <button type="button" (click)="printData()"> Imprimir </button>
-        </mat-step>
-        <mat-step label="Step 4">
-            <ul *ngFor="let produto of produtos; index as i">
-                <ol>
-                    <li *ngIf="produto.type=='prato'"> {{ produto.name }}</li>
-                    <li *ngIf="produto.type=='adicional'">Adicional de {{ produto.name }}</li>
-                    <li *ngIf="produto.type=='bebida'"> {{ produto.name }}</li>
-                </ol>
-                <ol>
-                    <li>O Total é: {{vTotal}} </li>
-                </ol>
-            </ul>
+        <mat-step label="Passo 3" class="steplabel">
+            <h2>Cliente:</h2>
             <ul>
-                <ol>
                     <li>{{ user?.nome1 }}</li>
                     <li>{{ user?.endereco }}</li>
-                </ol>
+                    <li>{{ user?.phone }}</li>
             </ul>
+            <p *ngIf="desconto">O Total é: {{ vTotal + entrega - desconto }}</p>
+            <p *ngIf="!desconto">O Total é: {{ vTotal + entrega }}</p>
+            <h2>Pedido: </h2>
+            <ul *ngFor="let produto of produtos; index as i">
+                    <li *ngIf="produto.type=='prato'"> {{ produto.name }}</li><button (click)="excluiProduto(i)"></button>
+                    <li *ngIf="produto.type=='adicional'">Adicional de {{ produto.name }}</li><button (click)="excluiProduto(i)"></button>
+                    <li *ngIf="produto.type=='bebida'"> {{ produto.name }}</li><button (click)="excluiProduto(i)"></button>
+            </ul>
+        </mat-step>
+        <mat-step label="Passo 4" class="steplabel">
+            <select [(ngModel)]="payment" placeholder="Forma de pagamento">Tipo:
+                <option value="card">Cartão</option>
+                <option value="money">Dinheiro</option>
+                <option value="other">Divido</option>
+            </select>
+            <!--<input [(ngModel)]="desconto" type="number" placeholder="Desconto"/>-->
+            <button type="button" class="conf" (click)="addCarrinho()"> Finalizar Compra </button>
+            <button type="button" class="conf" (click)="printData()"> Imprimir </button>
         </mat-step>
     </mat-vertical-stepper>
 </div>

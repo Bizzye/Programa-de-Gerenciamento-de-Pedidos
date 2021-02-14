@@ -12,7 +12,13 @@
 .tablel{
     margin-top: 2vw;
 }
-
+.tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+} .tr td{
+flex: 1 1 auto;
+}
 
 .form {
     font-size: 1.2vw;
@@ -29,24 +35,12 @@
     }
 }
 
-.button {
-    height: 4vw;
+button {
     text-align: center;
     background-color:rgb(247, 231, 18);
-    padding: 1vw;
     color: black;
     font-weight: 600;
     border-radius: 20px;
-}
-
-.button {
-    text-align: center;
-    background-color:rgb(247, 231, 18);
-    padding: 0.5vw;
-    color: black;
-    font-weight: 600;
-    border-radius: 20px;
-    border: none;
 }
 
 .item {
@@ -55,4 +49,46 @@
 }
 .tablel{
     margin-top: 2vw;
+    color: white;
 }
+.user{
+    width: 60vw;
+}
+.tablel{
+    width: 60vw;
+}
+.stepper{
+    background-color:grey;
+    color: white;
+    .mat-step-header .mat-step-label.mat-step-label-active  {
+        color:white !important;
+    }
+    .mat-step-header .mat-step-label, .mat-step-header .mat-step-optional {
+        color:white !important;
+    }
+    .mat-step-text-label {
+        color: white;
+    }
+}
+.desespero{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    li{
+        list-style: none;
+        width: 20vw;
+    }
+}
+.search{
+    margin-left:10px;
+    height: 40px;
+}
+button:hover {
+    background-color: black;
+    color: white;
+}
+.conf{
+    margin-left: 10px;
+    height: 40px;
+}
+

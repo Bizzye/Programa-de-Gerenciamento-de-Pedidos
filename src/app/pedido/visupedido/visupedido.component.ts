@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class VisupedidoComponent implements OnInit {
   
-   @Input() choose: {id, user: {nome1,nome2,nome3,id}, vEntrega, vTotal, entregador, pedido: {}, desconto, datahora:{}};
-
+   @Input() choose: {id, user: {nome1,nome2,nome3,id, ref}, vEntrega, vTotal, pedido: {}, desconto, datahora:{}};
+  
   constructor() { }
 
   ngOnInit(): void {

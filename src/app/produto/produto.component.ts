@@ -19,15 +19,16 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 export class ProdutoComponent implements OnInit {
 
   products: { name, type, preco };
-  users: { nome1, nome2, nome3, endereco, telefone };
+  users: { nome1, nome2, nome3, endereco, ref, phone };
   public produtos: any[] = [];
-  public entrega: number = 0 ;
-  public user:{ nome1, nome2, nome3, endereco, telefone };
-  public vTotal: number = 0;
+  public entrega: number ;
+  public user:{ nome1, nome2, nome3, endereco, ref, phone };
+  public vTotal: number;
   public pedido: {};
-  public pedidoF: {user: {}, vEntrega, vTotal, pedido: {}, desconto, datahora:{} };
+  public pedidoF: {user: {}, payment, vEntrega, vTotal, pedido: {}, desconto, datahora:{data,hora} };
   public qtd: number;
   public desconto: number;
+  public formaP: any;
   c: number = 0;
   data = new Date();
   public cliente: string = '';
@@ -37,6 +38,7 @@ export class ProdutoComponent implements OnInit {
   public productsA: { name, type, preco };
   public productsB: { name, type, preco };
   public productsP: { name, type, preco };
+  public payment: any;
 
   constructor( private renderService: RenderService,private productsService: ProductsService, private userService: UserService, private carrinhoS: CarrinhoService) { }
 
@@ -59,19 +61,25 @@ export class ProdutoComponent implements OnInit {
       this.user = user;
       console.log(this.user);
     };
-
     addItem(product){
       this.produtos.push(product);
       console.log(this.produtos);
+      this.vTotal = 0;
+      for(let i = 0; i < this.produtos.length; i++){
+        this.vTotal = this.vTotal + this.produtos[i].preco;
+        console.log(this.vTotal);
+      };
     };
     
     addCarrinho() {
+      this.desconto = 0;
       this.pedidoF = {
         user: this.user,
         vEntrega: this.entrega, 
         vTotal: this.vTotal , 
         pedido: this.produtos, 
         desconto: this.desconto,
+        payment: this.payment,
         datahora: {
           data: moment().format('DD/MM/YYYY'),
           hora: moment().unix()
@@ -105,53 +113,100 @@ export class ProdutoComponent implements OnInit {
           this.produtos.splice(index, 1);
           this.carrinhoS.produtos.next(this.produtos);
     };
+    print(){
+      let produtos = [];
+      for(let i = 0; i < this.produtos.length; i++){
+          if(this.produtos[i].type =="adicional"){
+          produtos.push("Adicional de " + this.produtos[i].name);
+        } else if(this.produtos[i].type =="prato"){
+          produtos.push("Batata de " + this.produtos[i].name);
+        } else if(this.produtos[i].type =="bebida"){
+          produtos.push("Bebida de " + this.produtos[i].name);
+        }
+      }
+      this.vTotal = this.vTotal + this.entrega;
+      let data = [{type: 'text', value: 'Numero do pedido:',style: `text-align:center;`,css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: '',css: {"font-size": "22px"}},
+      {type: 'text', value: 'Data: ', css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: 'Nome:',css: {"font-size": "18px", "margin":"30px"}},
+      //{type: 'text', value: this.user.nome1 ,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Telefone: ', css: {"font-size": "18px", "margin":"30px"}},
+      {type: 'text', value: 'Endereco:',css: {"font-size": "18px", "margin":"30px"}},
+      //{type: 'text', value: this.user.endereco,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Ponto de referencia:',css: {"font-size": "18px", "margin":"30px"}},
+      //{type: 'text', value: this.user.ref,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Pedido:',css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: produtos,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Taxa de Entrega:',css: {"font-size": "18px", "margin":"30px"}},
+      //{type: 'text', value: this.entrega,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Forma de Pagamento:',css: {"font-size": "18px", "margin":"30px"}},
+      //{type: 'text', value: this.payment,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Total:',css: {"font-size": "18px", "margin":"30px"}},
+      //{type: 'text', value: this.vTotal,css: {"font-size": "22px", "margin":"5px"}},
+      ];
+     
+      this.renderService.send('print',JSON.stringify(data));
+      let d = JSON.stringify(data);
+      console.log(d);
+
+    };
+    printW(){
+      let data = [{type: 'text', value: 'Numero do pedido:',style: `text-align:center;`,css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: '',css: {"font-size": "22px"}},
+      {type: 'text', value: 'Data: ', css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: 'Nome:',css: {"font-size": "18px", "margin":"30px"}},
+      //{type: 'text', value: this.user.nome1 ,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Telefone: ', css: {"font-size": "18px", "margin":"30px"}},
+      {type: 'text', value: 'Endereco:',css: {"font-size": "18px", "margin":"30px"}},
+      //{type: 'text', value: this.user.endereco,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Ponto de referencia:',css: {"font-size": "18px", "margin":"30px"}},
+      //{type: 'text', value: this.user.ref,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Pedido:',css: {"font-size": "18px", "margin":"50px"}},
+      //{type: 'text', value: produtos,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Taxa de Entrega:',css: {"font-size": "18px", "margin":"20px"}},
+      //{type: 'text', value: this.entrega,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Forma de Pagamento:',css: {"font-size": "18px", "margin":"30px"}},
+      //{type: 'text', value: this.payment,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Total:',css: {"font-size": "18px", "margin":"30px"}},
+      //{type: 'text', value: this.vTotal,css: {"font-size": "22px", "margin":"5px"}},
+      ];
+     
+      this.renderService.send('print',JSON.stringify(data));
+      let d = JSON.stringify(data);
+    }
     printData(){
-      let data = [ {type: 'text', value: 'Sample text siqhfkjnadfnja', style: 'text-align:center;font-weight: bold'},
-      {type: 'text', value: 'Another text asdadfad', style: 'color: #fff'},
-      {type: 'barCode', value: 'HB4587896 adasd', height: 12, width: 1, fontsize: 9},
-      {type: 'qrCode', value: 'https://google.com', height: 55, width: 55, style: 'margin: 10 20px 20 20px'},
-      {
-       type: 'table',
-       // style the table
-       style: 'border: 1px solid #ddd',
-       // list of the columns to be rendered in the table header
-       tableHeader: ['Animal', 'Age'],
-       // multi dimensional array depicting the rows and columns of the table body
-       tableBody: [
-           ['Cat', 2],
-           ['Dog', 4],
-           ['Horse', 12],
-           ['Pig', 4],
-       ],
-       // list of columns to be rendered in the table footer
-       tableFooter: ['Animal', 'Age'],
-       // custom style for the table header
-       tableHeaderStyle: 'background-color: #000; color: white;',
-       // custom style for the table body
-       tableBodyStyle: 'border: 0.5px solid #ddd',
-       // custom style for the table footer
-       tableFooterStyle: 'background-color: #000; color: white;',
-     },{
-       type: 'table',
-       style: 'border: 1px solid #ddd',             // style the table
-       // list of the columns to be rendered in the table header
-       tableHeader: [{type: 'text', value: 'Animal'},],
-       // multi dimensional array depicting the rows and columns of the table body
-       tableBody: [
-           [{type: 'text', value: 'Cat'} ],
-           [{type: 'text', value: 'Dog'}],
-           [{type: 'text', value: 'Horse'}],
-           [{type: 'text', value: 'Pig'}],
-       ],
-       // list of columns to be rendered in the table footer
-       tableFooter: [{type: 'text', value: 'Animal'}, 'Image'],
-       // custom style for the table header
-       tableHeaderStyle: 'background-color: #000; color: white;',
-       // custom style for the table body
-       tableBodyStyle: 'border: 0.5px solid #ddd',
-       // custom style for the table footer
-       tableFooterStyle: 'background-color: #000; color: white;',
-     }, ];
+      let produtos = [];
+      for(let i = 0; i < this.produtos.length; i++){
+        if(this.produtos[i].type =="adicional"){
+        produtos.push("Adicional de" + this.produtos[i].name);
+      } else if(this.produtos[i].type =="prato"){
+        produtos.push("Batata de" + this.produtos[i].name);
+      } else if(this.produtos[i].type =="bebida"){
+        produtos.push("Bebida de" + this.produtos[i].name);
+      }
+        //return ("{type: 'text', value: this.produtos[i].name},")
+      };
+      this.vTotal = this.vTotal + this.entrega;
+      let data = [{type: 'text', value: 'Numero do pedido:',style: `text-align:center;`,css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: '',css: {"font-size": "22px"}},
+      {type: 'text', value: 'Data: '+ this.pedidoF.datahora.data, css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: 'Nome:',css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: this.user.nome1 ,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Telefone: '+ this.user.phone, css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: 'Endereco:',css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: this.user.endereco,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Ponto de referencia:',css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: this.user.ref,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Pedido:',css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: produtos,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Taxa de Entrega:',css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: this.entrega,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Forma de Pagamento:',css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: this.payment,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Total:',css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: this.vTotal,css: {"font-size": "22px", "margin":"5px"}},
+      ];
+     
       this.renderService.send('print',JSON.stringify(data));
       let d = JSON.stringify(data);
       console.log(d);

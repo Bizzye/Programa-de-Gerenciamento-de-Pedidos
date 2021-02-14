@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 import { CarrinhoService } from '../services/carrinho.service';
 import { PaginatorService } from '../services/paginator.service';
@@ -11,7 +11,7 @@ import { UserService } from '../services/user.service';
   templateUrl: './pedido.component.html',
   styleUrls: ['./pedido.component.scss']
 })
-export class PedidoComponent implements OnInit {
+export class PedidoComponent implements OnInit, OnChanges {
 
   // Array of all items
   private allItems: any = [];
@@ -21,7 +21,7 @@ export class PedidoComponent implements OnInit {
   pagedItems: any[];
 
   products:{id, name, type, preco};
-  users:{id, nome1, nome2, nome3, endereco, telefone};
+  users:{id, nome1, nome2, nome3, endereco, telefone, ref};
   orders: {id, user: {}, vEntrega, vTotal, entregador, pedido: {}, desconto, datahora:{} };
   
   public showOrder = false;
@@ -57,6 +57,9 @@ export class PedidoComponent implements OnInit {
     this.pagedItems = this.allItems.slice(this.pagination.startIndex, this.pagination.endIndex + 1);
   }
 
+  fecha(){
+    this.showOrder = false;
+  }
   choose(i){
     if(this.order != this.pagedItems[i]){
       this.showOrder = false;
@@ -66,8 +69,7 @@ export class PedidoComponent implements OnInit {
     this.order = (this.pagedItems[i])
     console.log(this.order);
   }
-  fecha(){
-    this.showOrder = false;
-  }
 
+  ngOnChanges():void {
+  }
 }

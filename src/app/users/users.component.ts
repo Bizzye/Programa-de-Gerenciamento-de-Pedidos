@@ -13,7 +13,8 @@ export class UsersComponent implements OnInit {
   public endereco: string = '';
   public phone: number;
   public nome: string  = '';
-  public users: { nome1, nome2, nome3, endereco, phone, id };
+  public users: { nome1, nome2, nome3, endereco, phone, id, ref};
+  public ref: string = '';
   public splitado = [];
   public teste: string;
   public cliente: string = '';
@@ -53,7 +54,8 @@ export class UsersComponent implements OnInit {
       nome2, 
       nome3,
       endereco: this.endereco,
-      phone: this.phone
+      phone: this.phone,
+      ref: this.ref
     };
 
     this.userService.insertUser(User).then(d => {
