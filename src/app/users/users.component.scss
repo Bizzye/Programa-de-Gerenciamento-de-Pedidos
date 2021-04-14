@@ -1,9 +1,12 @@
 .container {
     margin-top: 3vh;
-    margin-left: 20vh;
+    margin-left: 5vw;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
+
+
 
 .form {
     font-size: 1.2vw;
@@ -64,4 +67,17 @@ button:hover {
 .button:hover {
     background-color: black;
     color: white;
+}
+
+.search{
+    border-radius: 15px;
+    margin-left: 1vw;
+    height: 6vh;
+}
+
+.searchInput{
+    border-radius: 15px;
+    text-indent: 10%;
+    margin-bottom: 5vh;
+    height: 6vh;
 }

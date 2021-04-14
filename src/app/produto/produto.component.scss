@@ -3,92 +3,183 @@
     margin-left: 20vh;
     display: flex;
     flex-direction: column;
-}
-.item {
-    font-size: 1.8vw;
-
+    min-height: 83vh;
+    width: 100%;
 }
 
-.tablel{
-    margin-top: 2vw;
+table{
+    margin-bottom: 10vh;
+    font-size: 20px;
+    color:white;
 }
-.tr {
+
+.tr td {
+    padding-top: 15px;
+}
+
+.steppercontrol{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-} .tr td{
-flex: 1 1 auto;
+    align-items: flex-end;
 }
 
-.form {
-    font-size: 1.2vw;
+.stepper1{
     display: flex;
-    flex-direction: row ;
-    margin-bottom: 2.5vw;
-    input, select {
-        margin-right: 2vw;
-        background-color: #1f1d1d;
-        border: 1px solid white;
-        border-radius: 20px;
-        padding-left: 5px;
-        height: 4vw;
-    }
+    flex-direction: column;
+    width: 100%; 
+    min-height: 100%;
 }
 
-button {
-    text-align: center;
-    background-color:rgb(247, 231, 18);
+.stepper2{
+    margin-top: 5vh;
+}
+
+.stepper3{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.stepAc{
+    font-weight: bold;
+    color: white;
+    background-color: grey;
+    height: 8vh;
+    width: 12vw;
+}
+.stepOf{
     color: black;
-    font-weight: 600;
-    border-radius: 20px;
+    height: 6vh;
+    width: 10vw;
 }
 
-.item {
-    font-size: 1.8vw;
-
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
-.tablel{
-    margin-top: 2vw;
+
+.entrega{
+    border-radius: 15px;
+    width: 22vh;
+    height: 30px;
+    bottom: 10%;
+    text-indent: 10%;
+}
+
+.table{
+    width: 60vw;
+}
+
+.searchInput{
+    border-radius: 15px;
+    text-indent: 10%;
+    margin-bottom: 5vh;
+    height: 6vh;
+}
+
+ul li {
+    color:white;
+    list-style-type: none;
+}
+
+p{
     color: white;
+    margin-bottom: 6vh;
 }
+
+h2 {
+    color: white;
+    margin-bottom: 6vh;
+}
+
+.payment{
+    border-radius: 15px;
+    width: 6vw;
+    height: 3vh;
+    margin-bottom: 5vh;
+    background-color: white;
+    text-indent: 5%;
+}
+
+mat-label{
+    color:white;
+}
+
+.desconto{
+    width: 5vw;
+}
+/* Button's */
+
+.step{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-left: 1px;
+    border: none;
+    text-align: center;
+    padding: 8px;
+}
+
+.step:hover{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-weight: bold;
+    height: 8vh;
+    width: 12vw;
+}
+
+.open{
+    width: 110px;
+    height: 50px;
+    background: transparent;
+    color:white;
+    border:none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    left: 200px;
+}
+
 .user{
-    width: 60vw;
-}
-.tablel{
-    width: 60vw;
-}
-.stepper{
-    background-color:grey;
+    width: 100%;
+    height: 100%;
     color: white;
-    .mat-step-header .mat-step-label.mat-step-label-active  {
-        color:white !important;
-    }
-    .mat-step-header .mat-step-label, .mat-step-header .mat-step-optional {
-        color:white !important;
-    }
-    .mat-step-text-label {
-        color: white;
-    }
+    background-color: transparent;
+    border-radius: 15px;
 }
-.desespero{
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    li{
-        list-style: none;
-        width: 20vw;
-    }
+
+.cardapio{
+    width: 15vw;
+    height: 5vh;
+    color: white;
+    background-color: transparent;
+    margin-top: 5vh;
 }
+
 .search{
-    margin-left:10px;
-    height: 40px;
+    border-radius: 15px;
+    margin-left: 1vw;
+    height: 6vh;
 }
-button:hover {
+
+.conf{
+    height: 6vh;
+    width: 10vw;
+    margin-top: 5vh;
+    border-radius: 15px;
+}
+
+.conf:hover {
+    background-color: #7CFC00;
+    font-weight: bold;
+}
+
+.button{
+    background-color: yellow;
+    border-radius: 15px;
+    height: 6vh;
+}
+
+.button:hover{
     background-color: black;
     color: white;
 }
-.conf{
-    margin-left: 10px;
-    height: 40px;
-}
-

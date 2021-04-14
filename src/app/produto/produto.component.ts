@@ -1,46 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
 import { ProductsService } from '../services/products.service';
 import { UserService} from '../services/user.service';
 import { CarrinhoService } from '../services/carrinho.service';
 import * as moment from 'moment';
 import { RenderService } from '../services/render.service';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { ProdDialogComponent } from './prod-dialog/prod-dialog.component';
 
 @Component({
   selector: 'app-produto',
   templateUrl: './produto.component.html',
   styleUrls: ['./produto.component.scss'],
-  providers: [{
-    provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}
-  }]
+  providers: []
 })
 export class ProdutoComponent implements OnInit {
 
   products: { name, type, preco };
   users: { nome1, nome2, nome3, endereco, ref, phone };
   public produtos: any[] = [];
-  public entrega: number ;
+  public entrega: number = null;
   public user:{ nome1, nome2, nome3, endereco, ref, phone };
   public vTotal: number;
   public pedido: {};
-  public pedidoF: {user: {}, payment, vEntrega, vTotal, pedido: {}, desconto, datahora:{data,hora} };
+  public pedidoF: {user: {}, payment, vEntrega, sub, vTotal, pedido: {}, desconto, datahora:{data,hora} };
   public qtd: number;
-  public desconto: number;
+  public desconto: number = null;
+  public sub: number;
   public formaP: any;
-  c: number = 0;
-  data = new Date();
   public cliente: string = '';
   public searchUsers: {};
   public showAll:boolean = true;
-  isLinear = true;
   public productsA: { name, type, preco };
   public productsB: { name, type, preco };
   public productsP: { name, type, preco };
   public payment: any;
-
-  constructor( private renderService: RenderService,private productsService: ProductsService, private userService: UserService, private carrinhoS: CarrinhoService) { }
+  public step1 = true;
+  public step2;
+  public step3;
+  public openP;
+  public openA;
+  public openD;
+  public message: string;
+  constructor( private dialog: MatDialog, private renderService: RenderService,private productsService: ProductsService, private userService: UserService, private carrinhoS: CarrinhoService) { }
 
   ngOnInit(): void {
     this.productsService.getProductsB().then((products: any) => {
@@ -57,25 +59,73 @@ export class ProdutoComponent implements OnInit {
       });
     }
 
+    stepper1(){
+      this.step1=true;
+      this.step2=false;
+      this.step3=false;
+    };
+
+    stepper2(){
+      this.step1=false;
+      this.step2=true;
+      this.step3=false;
+    };
+
+    stepper3(){
+      this.step1=false;
+      this.step2=false;
+      this.step3=true;
+      this.vTotal = this.sub + (this.entrega ?? 0);
+    };
+
+    openProd(){
+    this.openP = !this.openP;
+    };
+
+    openAD(){
+      this.openA = !this.openA;
+    };
+      
+    openDrink(){
+      this.openD = !this.openD;
+    };
+
     choose(user) {
       this.user = user;
       console.log(this.user);
     };
+
     addItem(product){
       this.produtos.push(product);
       console.log(this.produtos);
-      this.vTotal = 0;
+      this.sub = 0;
       for(let i = 0; i < this.produtos.length; i++){
-        this.vTotal = this.vTotal + this.produtos[i].preco;
-        console.log(this.vTotal);
+        this.sub = this.sub + this.produtos[i].preco;
+        console.log(this.sub);
       };
     };
     
     addCarrinho() {
-      this.desconto = 0;
+      console.log(this.desconto);
+      if(!this.desconto){
+        this.desconto = 0;
+      }
+      if(!this.entrega) {
+        this.message = ("esqueceu da entrega");
+        console.log("passou por aqui");
+        return this.openDialog();
+      }
+      if(!this.payment){
+        this.message = ("esqueceu da forma de pagamento");
+        console.log("passou por aqui");
+        return this.openDialog();
+      }
+
+      this.vTotal = this.vTotal - this.desconto;
       this.pedidoF = {
         user: this.user,
         vEntrega: this.entrega, 
+        sub: this.sub,
         vTotal: this.vTotal , 
         pedido: this.produtos, 
         desconto: this.desconto,
@@ -108,85 +158,70 @@ export class ProdutoComponent implements OnInit {
           this.showAll = true;
         }
       }
+    openDialog() {
+
+      const dialogConfig = new MatDialogConfig();
+
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+
+      this.dialog.open(ProdDialogComponent, {data: this.message});
+    }
       
     excluiProduto(index) {
           this.produtos.splice(index, 1);
           this.carrinhoS.produtos.next(this.produtos);
     };
+
     print(){
-      let produtos = [];
-      for(let i = 0; i < this.produtos.length; i++){
-          if(this.produtos[i].type =="adicional"){
-          produtos.push("Adicional de " + this.produtos[i].name);
-        } else if(this.produtos[i].type =="prato"){
-          produtos.push("Batata de " + this.produtos[i].name);
-        } else if(this.produtos[i].type =="bebida"){
-          produtos.push("Bebida de " + this.produtos[i].name);
-        }
-      }
-      this.vTotal = this.vTotal + this.entrega;
+      let Date = moment().format('DD/MM/YYYY')
+      this.vTotal = this.sub + this.entrega;
       let data = [{type: 'text', value: 'Numero do pedido:',style: `text-align:center;`,css: {"font-size": "18px", "margin":"10px"}},
-      {type: 'text', value: '',css: {"font-size": "22px"}},
-      {type: 'text', value: 'Data: ', css: {"font-size": "18px", "margin":"10px"}},
-      {type: 'text', value: 'Nome:',css: {"font-size": "18px", "margin":"30px"}},
+      //{type: 'text', value: '',css: {"font-size": "22px"}},
+      {type: 'text', value: 'Data: ' + Date, css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: 'Nome:',css: {"font-size": "18px", "margin":"10px"}},
       //{type: 'text', value: this.user.nome1 ,css: {"font-size": "22px", "margin":"5px"}},
-      {type: 'text', value: 'Telefone: ', css: {"font-size": "18px", "margin":"30px"}},
-      {type: 'text', value: 'Endereco:',css: {"font-size": "18px", "margin":"30px"}},
+      {type: 'text', value: 'Telefone: ', css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: 'Endereco:',css: {"font-size": "18px", "margin":"10px", "margin-bottom":"50px"}},
       //{type: 'text', value: this.user.endereco,css: {"font-size": "22px", "margin":"5px"}},
-      {type: 'text', value: 'Ponto de referencia:',css: {"font-size": "18px", "margin":"30px"}},
+      {type: 'text', value: 'Ponto de referencia:',css: {"font-size": "18px", "margin":"10px", "margin-bottom":"50px"}},
       //{type: 'text', value: this.user.ref,css: {"font-size": "22px", "margin":"5px"}},
       {type: 'text', value: 'Pedido:',css: {"font-size": "18px", "margin":"10px"}},
-      {type: 'text', value: produtos,css: {"font-size": "22px", "margin":"5px"}},
-      {type: 'text', value: 'Taxa de Entrega:',css: {"font-size": "18px", "margin":"30px"}},
-      {type: 'text', value: this.entrega,css: {"font-size": "22px", "margin":"5px"}},
-      {type: 'text', value: 'Forma de Pagamento:',css: {"font-size": "18px", "margin":"30px"}},
+      {type: 'text', value: 'Taxa de Entrega: ' + this.entrega ,css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: 'Forma de Pagamento:',css: {"font-size": "18px", "margin":"10px"}},
       //{type: 'text', value: this.payment,css: {"font-size": "22px", "margin":"5px"}},
-      {type: 'text', value: 'Total:',css: {"font-size": "18px", "margin":"30px"}},
-      {type: 'text', value: this.vTotal,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Sub total: ' + this.sub ,css: {"font-size": "18px", "margin":"10px"}},
+      {type: 'text', value: 'Total: ' + this.vTotal ,css: {"font-size": "18px", "margin":"20px"}},
       ];
-     
+      console.log(data);
+      for(let i = 0; i < this.produtos.length; i++){
+        let j = 7 + i;
+        if(this.produtos[i].type =="adicional"){
+        data.splice(j , 0, {type: 'text', value: '-- AD ' + this.produtos[i].name, css:{"font-size": "18px", "margin":""}});
+      } else if(this.produtos[i].type =="prato"){
+        data.splice(j , 0, {type: 'text', value: 'Batata de ' + this.produtos[i].name, css:{"font-size": "18px", "margin":""}});
+      } else if(this.produtos[i].type =="bebida"){
+        data.splice(j , 0, {type: 'text', value: 'Bebida de ' + this.produtos[i].name, css:{"font-size": "18px", "margin":""}});
+      }
+      };
       this.renderService.send('print',JSON.stringify(data));
-      let d = JSON.stringify(data);
-      console.log(d);
+      console.log(this.vTotal);
+      console.log(data);
 
     };
-    printW(){
-      let data = [{type: 'text', value: 'Numero do pedido:',style: `text-align:center;`,css: {"font-size": "18px", "margin":"10px"}},
-      {type: 'text', value: '',css: {"font-size": "22px"}},
-      {type: 'text', value: 'Data: ', css: {"font-size": "18px", "margin":"10px"}},
-      {type: 'text', value: 'Nome:',css: {"font-size": "18px", "margin":"30px"}},
-      //{type: 'text', value: this.user.nome1 ,css: {"font-size": "22px", "margin":"5px"}},
-      {type: 'text', value: 'Telefone: ', css: {"font-size": "18px", "margin":"30px"}},
-      {type: 'text', value: 'Endereco:',css: {"font-size": "18px", "margin":"30px"}},
-      //{type: 'text', value: this.user.endereco,css: {"font-size": "22px", "margin":"5px"}},
-      {type: 'text', value: 'Ponto de referencia:',css: {"font-size": "18px", "margin":"30px"}},
-      //{type: 'text', value: this.user.ref,css: {"font-size": "22px", "margin":"5px"}},
-      {type: 'text', value: 'Pedido:',css: {"font-size": "18px", "margin":"50px"}},
-      //{type: 'text', value: produtos,css: {"font-size": "22px", "margin":"5px"}},
-      {type: 'text', value: 'Taxa de Entrega:',css: {"font-size": "18px", "margin":"20px"}},
-      //{type: 'text', value: this.entrega,css: {"font-size": "22px", "margin":"5px"}},
-      {type: 'text', value: 'Forma de Pagamento:',css: {"font-size": "18px", "margin":"30px"}},
-      //{type: 'text', value: this.payment,css: {"font-size": "22px", "margin":"5px"}},
-      {type: 'text', value: 'Total:',css: {"font-size": "18px", "margin":"30px"}},
-      //{type: 'text', value: this.vTotal,css: {"font-size": "22px", "margin":"5px"}},
-      ];
-     
-      this.renderService.send('print',JSON.stringify(data));
-      let d = JSON.stringify(data);
-    }
+    
     printData(){
-      let produtos = [];
-      for(let i = 0; i < this.produtos.length; i++){
-        if(this.produtos[i].type =="adicional"){
-        produtos.push("Adicional de" + this.produtos[i].name);
-      } else if(this.produtos[i].type =="prato"){
-        produtos.push("Batata de" + this.produtos[i].name);
-      } else if(this.produtos[i].type =="bebida"){
-        produtos.push("Bebida de" + this.produtos[i].name);
+      this.vTotal = this.sub + this.entrega;
+      let payment;
+      if(this.payment == 'money'){
+        payment = 'dinheiro';
       }
-        //return ("{type: 'text', value: this.produtos[i].name},")
-      };
-      this.vTotal = this.vTotal + this.entrega;
+      if(this.payment == 'other'){
+        payment = 'Outro';
+      }
+      if(this.payment == 'card'){
+        payment = 'cartão';
+      }
       let data = [{type: 'text', value: 'Numero do pedido:',style: `text-align:center;`,css: {"font-size": "18px", "margin":"10px"}},
       {type: 'text', value: '',css: {"font-size": "22px"}},
       {type: 'text', value: 'Data: '+ this.pedidoF.datahora.data, css: {"font-size": "18px", "margin":"10px"}},
@@ -198,15 +233,26 @@ export class ProdutoComponent implements OnInit {
       {type: 'text', value: 'Ponto de referencia:',css: {"font-size": "18px", "margin":"10px"}},
       {type: 'text', value: this.user.ref,css: {"font-size": "22px", "margin":"5px"}},
       {type: 'text', value: 'Pedido:',css: {"font-size": "18px", "margin":"10px"}},
-      {type: 'text', value: produtos,css: {"font-size": "22px", "margin":"5px"}},
       {type: 'text', value: 'Taxa de Entrega:',css: {"font-size": "18px", "margin":"10px"}},
       {type: 'text', value: this.entrega,css: {"font-size": "22px", "margin":"5px"}},
       {type: 'text', value: 'Forma de Pagamento:',css: {"font-size": "18px", "margin":"10px"}},
-      {type: 'text', value: this.payment,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: payment ,css: {"font-size": "22px", "margin":"5px"}},
+      {type: 'text', value: 'Sub total:' + this.sub ,css: {"font-size": "18px", "margin":"10px"}},
       {type: 'text', value: 'Total:',css: {"font-size": "18px", "margin":"10px"}},
       {type: 'text', value: this.vTotal,css: {"font-size": "22px", "margin":"5px"}},
       ];
-     
+      console.log(this.vTotal);
+      console.log(data);
+      for(let i = 0; i < this.produtos.length; i++){
+        let j = 11 + i;
+        if(this.produtos[i].type =="adicional"){
+        data.splice(j , 0, {type: 'text', value: '-- AD ' + this.produtos[i].name,css:{"font-size": "18px"}});
+      } else if(this.produtos[i].type =="prato"){
+        data.splice(j , 0, {type: 'text', value: 'Batata de ' + this.produtos[i].name,css:{"font-size": "18px"}});
+      } else if(this.produtos[i].type =="bebida"){
+        data.splice(j , 0, {type: 'text', value: 'Bebida de ' + this.produtos[i].name,css:{"font-size": "18px"}});
+      }
+      };
       this.renderService.send('print',JSON.stringify(data));
       let d = JSON.stringify(data);
       console.log(d);

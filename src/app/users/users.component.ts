@@ -37,8 +37,13 @@ export class UsersComponent implements OnInit {
   addUser() {
     this.splitado = this.nome.split(" ",3);
     let nome1 = this.splitado[0];
-    let nome2 = this.splitado[1];
+    let nome2;
     let nome3;
+    if(this.splitado.length == 2){
+      nome2 = this.splitado[1];
+    } else {
+      nome2 = '';
+    }
     if(this.splitado.length == 3){
       nome3 = this.splitado[2];
     } else {

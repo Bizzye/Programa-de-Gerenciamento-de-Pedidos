@@ -1,44 +1,49 @@
-body {
-    margin: 0 auto;
-    width: 100vw;
-    height: 100vh;
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .top{
     background-color:#0e0c0c;
     text-align: center;
-    width: 100vw;
-    height: 12vh;
+    width: 100%;
+    min-height: 12vh;
 }
 
 .top .logo {
-    max-height: 70px;
-    margin-top: 1.1vh;
+    max-height: 65px;
+    margin-top: 1vh;
 }
 
 .content{
     display: flex;
-    width: 100vw;
-    min-height: 88vh;
     align-items: stretch;
+    width: 100%;
+    max-height: max-content;
+    min-height: 88vh;
 }
 .components {
-    width: 88vw;
-    background-color:#181616;
     display: flex;
     flex-direction: row;
-    height: max-content;
-    min-height: 88vh ;
+    background-color:#181616;
+    width: 88%;
+    min-height: 88vh;
 }
-
 .menu {
     display: flex;
     flex-direction: column;
-    background-color:#141212;
     text-align: center;
-    width: 12vw;
-    min-height: 88vh;
+    background-color:#141212;
     padding-top: 3vh;
+    width: 12%;
+    
 }
 
 .menu a{

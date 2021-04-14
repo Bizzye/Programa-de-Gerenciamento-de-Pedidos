@@ -16,7 +16,9 @@ import { ProdutoComponent } from './produto/produto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { VisupedidoComponent } from './pedido/visupedido/visupedido.component';
-import { MatStepperModule } from '@angular/material/stepper';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ProdDialogComponent } from './produto/prod-dialog/prod-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -26,8 +28,10 @@ import { MatStepperModule } from '@angular/material/stepper';
     CardapioComponent,
     PedidoComponent,
     ProdutoComponent,
-    VisupedidoComponent
+    VisupedidoComponent,
+    ProdDialogComponent
   ],
+  entryComponents: [ProdDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,7 +41,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     NgbModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
-    MatStepperModule
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [],
   exports:[ ],

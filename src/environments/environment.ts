@@ -1,6 +1,6 @@
 
 export const environment = {
-  production: false,
+  production: true,
   firebaseConfig : {
     apiKey: "AIzaSyC7iPoiWNinKPqdD95hByTdDSLXjfIaPf0",
     authDomain: "hakunapp-dev.firebaseapp.com",

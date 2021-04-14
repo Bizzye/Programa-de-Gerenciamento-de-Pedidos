@@ -1,62 +1,13 @@
 <div class="container">
-    <button (click)="print()">Só o cardapio</button>
-    ]<button (click)="printW()">Só o Script</button>
-    <mat-vertical-stepper [linear]="isLinear" #stepper class="stepper">
-        <mat-step label="Passo 1" class="steplabel">
-            <input [(ngModel)]="cliente" type="search" placeholder="Pesquise o cliente">
-            <button class="search" (click)="procura()">Pesquisar</button>
-            <ul class="desespero" *ngIf="showAll==false">
-                <li>Nome</li>
-                <li>Telefone</li>
-                <li>Endereço</li>
-                <li>Ponto de referência</li>
-            </ul>
-                <table *ngIf="showAll==false" class="table" style="width: 60vw;">
-                    <!--<thead>
-                        <tr class="tablel">
-                            <th scope="col">Nome</th>
-                            <th scope="col">Telefone</th>
-                            <th scope="col">Endereço</th>
-                        </tr>
-                    </thead>-->
-                    <tbody>
-                        <tr class="tr" *ngFor="let user of searchUsers; index as i">
-                            <button type="button" class="user" (click)="choose(user)" ><td>{{ user.nome1 + ' ' + (user.nome2 ? user.nome2 : '') + ' ' + (user.nome3 ? user.nome3 : '')  }}</td>
-                            <td>{{ user.phone }}</td>
-                            <td>{{ user.endereco }}</td>
-                            <td>{{ user.ref }}</td></button>
-                        </tr>
-                    </tbody>
-                </table>
-                <ul class="desespero" *ngIf="showAll==true">
-                    <li>Nome</li>
-                    <li>Telefone</li>
-                    <li>Endereço</li>
-                    <li>Ponto de referência</li>
-                </ul>
-            <table *ngIf="showAll==true" class="table" style="width: 60vw;">
-                <!--<thead>
-                    <tr class="tablel">
-                        <th scope="col">Nome</th>
-                        <th scope="col">Telefone</th>
-                        <th scope="col">Endereço</th>
-                        <th scope="col">Ponto de referência</th>
-                    </tr>
-                </thead>-->
-                <tbody>
-                    <tr class="tr" *ngFor="let user of users; index as i">
-                        <button type="button" class="user" (click)="choose(user)" ><td>{{ user.nome1 + ' ' + (user.nome2 ? user.nome2 : '') + ' ' + (user.nome3 ? user.nome3 : '')  }}</td>
-                        <td>{{ user.phone }}</td>
-                        <td>{{ user.endereco }}</td>
-                        <td>{{ user.ref }}</td></button>
-                    </tr>
-                </tbody>
-            </table>
-            <input [(ngModel)]="entrega" type="number" placeholder="Valor da entrega" />
-        </mat-step>
-        <mat-step label="Passo 2" class="steplabel">
-            <h1>Pratos: </h1>
-                <table class="table" style="width: 60vw;">
+    <div class="stepper">
+        <div class="steppercontrol">
+            <button (click)="stepper1()" [ngClass]="{'stepAc': step1, 'stepOf': !step1 }" class="step">Pedido: </button>
+            <button (click)="stepper2()" [ngClass]="{'stepAc': step2, 'stepOf': !step2 }" class="step" [disabled]="produtos.length==0">Endereço: </button>
+            <button (click)="stepper3()" [ngClass]="{'stepAc': step3, 'stepOf': !step3 }" class="step" [disabled]="!user">Finalizar: </button>
+        </div>
+        <div class="stepper1" *ngIf="step1==true">
+                <button (click)="openProd()" class="open">Pratos: </button>
+                <table *ngIf="openP==true" class="tableP" style="width: 60vw;">
                     <thead>
                         <tr class="tablel">
                             <th scope="col">Nome</th>
@@ -68,13 +19,13 @@
                         <tr class="tr" *ngFor="let product of productsP; index as i">
                             <td>{{ product.name }}</td>
                             <td>R${{ product.preco | number }}</td>
-                            <td> <button type="button" (click)="addItem(product)">Adicionar</button>
+                            <td> <button class="button" type="button" (click)="addItem(product)">Adicionar</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <h1>Adicionais: </h1>
-                <table class="table" style="width: 60vw;">
+                <button (click)="openAD()" class="open">Adicionais: </button>
+                <table *ngIf="openA==true" class="tableP" style="width: 60vw;">
                     <thead>
                         <tr class="tablel">
                             <th scope="col">Nome</th>
@@ -86,13 +37,13 @@
                         <tr class="tr" *ngFor="let product of productsA; index as i">
                             <td>{{ product.name }}</td>
                             <td>R${{ product.preco | number }}</td>
-                            <td> <button type="button" (click)="addItem(product)">Adicionar</button>
+                            <td> <button class="button" type="button" (click)="addItem(product)">Adicionar</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <h1>Bebidas: </h1>
-                <table class="table" style="width: 60vw;">
+                <button (click)="openDrink()" class="open">Bebidas: </button>
+                <table *ngIf="openD==true" class="tableP" style="width: 60vw;">
                     <thead>
                         <tr class="tablel">
                             <th scope="col">Nome</th>
@@ -104,37 +55,78 @@
                         <tr class="tr" *ngFor="let product of productsB; index as i">
                             <td>{{ product.name }}</td>
                             <td>R${{ product.preco | number }}</td>
-                            <td> <button type="button" (click)="addItem(product)">Adicionar</button>
+                            <td> <button class="button" type="button" (click)="addItem(product)">Adicionar</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-        </mat-step>
-        <mat-step label="Passo 3" class="steplabel">
-            <h2>Cliente:</h2>
-            <ul>
-                    <li>{{ user?.nome1 }}</li>
-                    <li>{{ user?.endereco }}</li>
-                    <li>{{ user?.phone }}</li>
-            </ul>
-            <p *ngIf="desconto">O Total é: {{ vTotal + entrega - desconto }}</p>
-            <p *ngIf="!desconto">O Total é: {{ vTotal + entrega }}</p>
-            <h2>Pedido: </h2>
-            <ul *ngFor="let produto of produtos; index as i">
-                    <li *ngIf="produto.type=='prato'"> {{ produto.name }}</li><button (click)="excluiProduto(i)"></button>
-                    <li *ngIf="produto.type=='adicional'">Adicional de {{ produto.name }}</li><button (click)="excluiProduto(i)"></button>
-                    <li *ngIf="produto.type=='bebida'"> {{ produto.name }}</li><button (click)="excluiProduto(i)"></button>
-            </ul>
-        </mat-step>
-        <mat-step label="Passo 4" class="steplabel">
-            <select [(ngModel)]="payment" placeholder="Forma de pagamento">Tipo:
-                <option value="card">Cartão</option>
-                <option value="money">Dinheiro</option>
-                <option value="other">Divido</option>
-            </select>
-            <!--<input [(ngModel)]="desconto" type="number" placeholder="Desconto"/>-->
-            <button type="button" class="conf" (click)="addCarrinho()"> Finalizar Compra </button>
-            <button type="button" class="conf" (click)="printData()"> Imprimir </button>
-        </mat-step>
-    </mat-vertical-stepper>
-</div>
+                <input [(ngModel)]="entrega" type="number" class="entrega" placeholder="Valor da entrega"/>  
+                <button class="cardapio" (click)="print()">Só o cardapio</button>   
+        </div>
+        <div class="stepper2" *ngIf="step2==true">
+                    <input class="searchInput" [(ngModel)]="cliente" type="search" placeholder="Pesquise o cliente" (keyup.enter)="procura()">
+                    <button class="search" (click)="procura()">Pesquisar</button>
+                        <table *ngIf="showAll==false" class="table" style="width: 60vw;">
+                            <thead>
+                                <tr class="tablel">
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Telefone</th>
+                                    <th scope="col">Endereço</th>
+                                    <th scope="col">Ponto de referência</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tr" *ngFor="let user of searchUsers; index as i">
+                                    <td><button type="button" class="user" (click)="choose(user)" >{{ user.nome1 + ' ' + (user.nome2 ? user.nome2 : '') + ' ' + (user.nome3 ? user.nome3 : '')  }}</button></td>
+                                    <td>{{ user.phone }}</td>
+                                    <td>{{ user.endereco }}</td>
+                                    <td>{{ user.ref }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    <table *ngIf="showAll==true" class="table" style="width: 60vw;">
+                        <thead>
+                            <tr class="tablel">
+                                <th scope="col">Nome</th>
+                                <th scope="col">Telefone</th>
+                                <th scope="col">Endereço</th>
+                                <th scope="col">Ponto de referência</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tr" *ngFor="let user of users; index as i">
+                                <td><button type="button" class="user" (click)="choose(user)">{{ user.nome1 + ' ' + (user.nome2 ? user.nome2 : '') + ' ' + (user.nome3 ? user.nome3 : '')  }}</button></td>
+                                <td>{{ user.phone }}</td>
+                                <td>{{ user.endereco }}</td>
+                                <td>{{ user.ref }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+        </div>
+        <div class="stepper3" *ngIf="step3==true">
+                <h2>Cliente:</h2>
+                <ul>
+                        <li>{{ user?.nome1 }}</li>
+                        <li>{{ user?.endereco }}</li>
+                        <li>{{ user?.phone }}</li>
+                </ul>
+                <h2>Pedido: </h2>
+                <ul *ngFor="let produto of produtos; index as i">
+                        <li *ngIf="produto.type=='prato'"> {{ produto.name }}</li>
+                        <li *ngIf="produto.type=='adicional'">Adicional de {{ produto.name }}</li>
+                        <li *ngIf="produto.type=='bebida'"> {{ produto.name }}</li><button class="button" (click)="excluiProduto(i)">Remover</button>
+                </ul>
+                <p *ngIf="desconto">O Total é: {{ vTotal - desconto }}</p>
+                <p *ngIf="!desconto">O Total é: {{ vTotal }}</p>
+                <mat-label>Forma de pagamento</mat-label>
+                <mat-select class="payment" [(ngModel)]="payment">
+                    <mat-option value="money"> Dinheiro </mat-option>
+                    <mat-option value="card"> Cartão </mat-option>
+                    <mat-option value="other"> Outro </mat-option>
+                </mat-select>
+                <input [(ngModel)]="desconto" type="number" placeholder="Desconto" class="desconto" />
+                <button type="button" class="conf" (click)="addCarrinho()"> Finalizar Compra </button>
+                <button type="button" class="conf" (click)="printData()" [disabled]="!pedidoF"> Imprimir </button>
+        </div>
+    </div>
+</div>  
