@@ -12,10 +12,8 @@ import { UserService } from './services/user.service';
 export class AppComponent implements OnInit {
   title = 'Hakunapp';
   public bdp : {};
+  open: boolean = false;
 
-
-  //const fs = (<any>window).require("fs");
-  //const electron = (<any>window).require("electron");
 
   constructor(private fire: AngularFirestore,
     private user: UserService) {
@@ -23,6 +21,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  abrirMenu(){
+    this.open = !this.open;
   }
 
 }

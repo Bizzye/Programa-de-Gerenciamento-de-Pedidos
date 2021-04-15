@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { sortAndDeduplicateDiagnostics } from 'typescript';
 import { ProductsService } from '../services/products.service';
-
+moment.locale('pt-BR')
 @Component({
   selector: 'app-cardapio',
   templateUrl: './cardapio.component.html',

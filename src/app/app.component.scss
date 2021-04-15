@@ -1,17 +1,6 @@
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    outline: none;
-}
-
-html, body {
-    width: 100%;
-    overflow-x: hidden;
-}
-
 .top{
-    background-color:#0e0c0c;
+    position: relative;
+    background-color:#1b2129;
     text-align: center;
     width: 100%;
     min-height: 12vh;
@@ -22,38 +11,81 @@ html, body {
     margin-top: 1vh;
 }
 
+
+.checmenu{
+    height: 45px;
+}
+
+.button{
+    position: absolute;
+    height: 45px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1%;
+}
+
+ul{
+    width: 100%;
+    background-color:#202831;
+    margin-top: 15%;
+    padding: 0;
+}
+
+@keyframes slideR {
+    from {
+        width: 0;
+    }
+    to {
+        width: 20vw;
+    }
+}
+nav{
+    animation: slideR 0.4s;
+    position: relative;
+    min-height: 100vh;
+    max-height: max-content;
+    width: 20vw;
+    background-color:#202831;
+}
+
+li{
+    list-style: none;
+    margin-bottom: 5%;
+    font-size: 1.5vw;
+    padding-left: 5%;
+    margin: auto;
+    width: 100%;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+}
+
+li:hover{
+    background-color: #191e24;
+    border-radius: 5px;
+    a{
+        color:#327fb9;
+    }
+}
+
 .content{
     display: flex;
-    align-items: stretch;
     width: 100%;
-    max-height: max-content;
-    min-height: 88vh;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .components {
     display: flex;
     flex-direction: row;
-    background-color:#181616;
-    width: 88%;
+    justify-content: center;
+    background-color:#ecf0f5;
+    width: 100%;
     min-height: 88vh;
 }
-.menu {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    background-color:#141212;
-    padding-top: 3vh;
-    width: 12%;
-    
-}
 
-.menu a{
-    color: white;
+nav a{
+    color: #5e6871;
     display: flex;
-    padding-left: 3vh;
-    padding-bottom: 2vh;
     cursor: pointer;
     text-decoration: none;
 }
-.menu a:hover{
-    color:orange;
-}
+ 

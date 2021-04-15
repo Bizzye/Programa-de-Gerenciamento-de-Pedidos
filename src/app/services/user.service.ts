@@ -11,7 +11,7 @@ export class UserService {
 
   getUsers() {
     return new Promise((resolve, reject) => {
-      this.fire.collection("users").ref.get().then(users => {
+      this.fire.collection("users").ref.limit(10).orderBy('id', 'desc').get().then(users => {
         let usersData = [];
         users.docs.map(user => usersData.push(user.data()));
         resolve(usersData);

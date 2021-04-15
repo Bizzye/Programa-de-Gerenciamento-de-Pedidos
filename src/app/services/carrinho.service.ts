@@ -16,22 +16,11 @@ export class CarrinhoService {
 
   getOrders() {
     return new Promise((resolve, reject) => {
-      this.fire.collection("orders").ref.get().then(orders => {
+      this.fire.collection("orders").ref.limit(50).orderBy('id', 'desc').get().then(orders => {
         let ordersData = [];
         orders.docs.map(order => ordersData.push(order.data()));
+        console.log(orders.docs.length);
         resolve(ordersData);
-      }).catch(err => {
-        reject();
-      });
-    });
-  }
-
-  getDeliveryM() {
-    return new Promise((resolve, reject) => {
-      this.fire.collection("deliverym").ref.get().then(deliverym => {
-        let deliverymData = [];
-        deliverym.docs.map(dm => deliverymData.push(dm.data()));
-        resolve(deliverymData);
       }).catch(err => {
         reject();
       });

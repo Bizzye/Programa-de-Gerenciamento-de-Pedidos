@@ -1,15 +1,20 @@
 <div class="top">
+    <div class="button" (click)="abrirMenu()">
+        <img class="checmenu" src="../assets/img/menu.png">
+    </div>
     <a routerLink="produto">
         <img class="logo" src="assets/img/logo.png" alt="logo">
     </a>
 </div>
 <div class="content">
-    <div class="menu">
-        <a routerLink="cardapio">Cárdapio</a>
-        <a routerLink="user">Adicionar Cliente</a>
-        <a routerLink="pedido">Pedidos</a>
-        <a routerLink="produto">Novo Pedido</a>
-    </div>
+    <nav *ngIf="open == true">
+        <ul>
+            <li><a routerLink="cardapio">Cárdapio</a></li>
+            <li><a routerLink="user">Adicionar Cliente</a></li>
+            <li><a routerLink="pedido">Pedidos</a></li>
+            <li><a routerLink="produto">Novo Pedido</a></li>
+        </ul>
+    </nav>
     <div class="components">
         <router-outlet></router-outlet>
     </div>

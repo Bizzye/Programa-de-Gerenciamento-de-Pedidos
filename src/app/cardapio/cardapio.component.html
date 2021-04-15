@@ -3,7 +3,7 @@
         <h3>Adicionar Itens</h3>
             <div class="form">
                 <input [(ngModel)]="name" type="text" placeholder="Nome" />
-                <input [(ngModel)]="preco" type="number" placeholder="Preço" />
+                <input [(ngModel)]="preco" type="number" min="0" placeholder="Preço" class="i-preco" />
                 <select [(ngModel)]="type">Tipo:
                     <option value="prato">Prato</option>
                     <option value="adicional">Adicional</option>
@@ -12,7 +12,7 @@
                 <button (click)="addProduct()">Adicionar</button>
             </div>
     </div>
-    <div>
+    <div class="main">
         <h1>Pratos: </h1>
             <table class="table" style="width: 60vw;">
                 <thead>
@@ -25,7 +25,7 @@
                 <tbody>
                     <tr class="tr" *ngFor="let product of productsP; index as i">
                         <td>{{ product.name }}</td>
-                        <td>R${{ product.preco | number }}</td>
+                        <td>R$ {{ product.preco | number:'1.2-2' }}</td>
                         <td> <button type="button" (click)="removeProduct(product.id)">Remover</button>
                         </td>
                     </tr>
@@ -43,7 +43,7 @@
                 <tbody>
                     <tr class="tr" *ngFor="let product of productsA; index as i">
                         <td>{{ product.name }}</td>
-                        <td>R${{ product.preco | number }}</td>
+                        <td>R$ {{ product.preco | number:'1.2-2' }}</td>
                         <td> <button type="button" (click)="removeProduct(product.id)">Remover</button>
                         </td>
                     </tr>
@@ -61,7 +61,7 @@
                 <tbody>
                     <tr class="tr" *ngFor="let product of productsB; index as i">
                         <td>{{ product.name }}</td>
-                        <td>R${{ product.preco | number }}</td>
+                        <td>R$ {{ product.preco | number:'1.2-2' }}</td>
                         <td> <button type="button" (click)="removeProduct(product.id)">Remover</button>
                         </td>
                     </tr>

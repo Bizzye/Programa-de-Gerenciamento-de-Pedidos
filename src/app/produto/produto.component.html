@@ -6,6 +6,7 @@
             <button (click)="stepper3()" [ngClass]="{'stepAc': step3, 'stepOf': !step3 }" class="step" [disabled]="!user">Finalizar: </button>
         </div>
         <div class="stepper1" *ngIf="step1==true">
+            <div class="prod">
                 <button (click)="openProd()" class="open">Pratos: </button>
                 <table *ngIf="openP==true" class="tableP" style="width: 60vw;">
                     <thead>
@@ -60,8 +61,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <input [(ngModel)]="entrega" type="number" class="entrega" placeholder="Valor da entrega"/>  
-                <button class="cardapio" (click)="print()">Só o cardapio</button>   
+            </div>
+            <input [(ngModel)]="entrega" type="number" class="entrega" placeholder="Valor da entrega"/>  
+            <button class="cardapio" (click)="print()">Só o cardapio</button>   
         </div>
         <div class="stepper2" *ngIf="step2==true">
                     <input class="searchInput" [(ngModel)]="cliente" type="search" placeholder="Pesquise o cliente" (keyup.enter)="procura()">
@@ -128,5 +130,14 @@
                 <button type="button" class="conf" (click)="addCarrinho()"> Finalizar Compra </button>
                 <button type="button" class="conf" (click)="printData()" [disabled]="!pedidoF"> Imprimir </button>
         </div>
+    </div>
+    <div class="controller">
+        <div class="button zerar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+            </svg>
+        </div>
+        <div class="button carrinho"></div>
     </div>
 </div>  

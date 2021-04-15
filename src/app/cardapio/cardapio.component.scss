@@ -1,39 +1,56 @@
 .container {
     margin-top: 3vh;
-    margin-left: 20vh;
     display: flex;
     flex-direction: column;
+    background-color: rgb(247, 247, 247);
+    border-top: 5px solid #4e98c2;
+    border-radius: 5px;
+    min-height: 85vh;
 }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 .form {
     font-size: 1.2vw;
     display: flex;
     flex-direction: row ;
+    justify-content: center;
     margin-bottom: 2.5vw;
     input, select {
         margin-right: 2vw;
-        color: white;
-        background-color: #1f1d1d;
-        border: 1px solid white;
-        border-radius: 20px;
+        color: black;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 5px;
         padding-left: 5px;
+        text-indent: 5%;
     }
 }
 
-.button {
-    text-align: center;
-    background-color:rgb(255, 94, 0);
-    padding: 1vw;
-    color: white;
-    border-radius: 20px;
+.i-preco{
+    width: 10%;
 }
 
 button {
     text-align: center;
-    background-color:rgb(255, 94, 0);
-    padding: 0.5vw;
+    background-color:#4e98c2;
+    padding: 0.7vw 1vw 0.7vw 1vw;
     color: white;
-    border-radius: 20px;
+    border-radius: 5px;
     border: none;
+}
+
+.adicionarItem{
+    text-align: center;
+    h3{
+        font-weight: 900;
+        font-size: 1.2vw;
+        margin-top: 2vh;
+    }
 }
 
 .item {
@@ -41,14 +58,24 @@ button {
 }
 
 .tablel{
-    color:white;
+    color:black;
     margin-top: 2vw;
 }
 
 .tr{
-    color:white;
+    color:black;
 }
 button:hover {
     background-color: black;
-    color: white;
+    color:white;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+td{
+    vertical-align: unset;
 }

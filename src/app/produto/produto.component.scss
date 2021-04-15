@@ -1,10 +1,12 @@
 .container {
-    margin-top: 5vh;
-    margin-left: 20vh;
+    margin-top: 3vh;
     display: flex;
     flex-direction: column;
-    min-height: 83vh;
-    width: 100%;
+    background-color: rgb(247, 247, 247);
+    border-top: 5px solid #4e98c2;
+    border-radius: 5px;
+    min-height: 85vh;
+    width: 62.1vw;
 }
 
 table{
@@ -135,8 +137,7 @@ mat-label{
     border:none;
     margin-top: 20px;
     margin-bottom: 20px;
-    position: relative;
-    left: 200px;
+    
 }
 
 .user{
@@ -182,4 +183,24 @@ mat-label{
 .button:hover{
     background-color: black;
     color: white;
+}
+
+.zerar{
+    position: fixed;
+    right: 3%;
+    bottom: 15vh;
+    background-color: transparent;
+}
+
+.carrinho{
+    position: fixed;
+    right: 3%;
+    bottom: 5vh;
+    height: 6vh;
+    width: 4vw;
+}
+
+.refresh{
+    height: 6vh;    
+    width: 4vw;
 }

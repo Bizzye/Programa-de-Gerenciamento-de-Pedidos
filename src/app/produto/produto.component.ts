@@ -101,6 +101,7 @@ export class ProdutoComponent implements OnInit {
       this.sub = 0;
       for(let i = 0; i < this.produtos.length; i++){
         this.sub = this.sub + this.produtos[i].preco;
+        this.sub = Number(this.sub.toFixed(2))
         console.log(this.sub);
       };
     };
@@ -137,6 +138,7 @@ export class ProdutoComponent implements OnInit {
       }
       console.log(this.pedidoF);
       this.carrinhoS.insertorder(this.pedidoF);
+
     };
 
     procura(){
