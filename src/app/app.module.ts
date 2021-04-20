@@ -19,6 +19,7 @@ import { VisupedidoComponent } from './pedido/visupedido/visupedido.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProdDialogComponent } from './produto/prod-dialog/prod-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
+import { AdicionalDialogComponent } from './produto/adicional-dialog/adicional-dialog.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MatSelectModule } from '@angular/material/select';
     PedidoComponent,
     ProdutoComponent,
     VisupedidoComponent,
-    ProdDialogComponent
+    ProdDialogComponent,
+    AdicionalDialogComponent
   ],
   entryComponents: [ProdDialogComponent],
   imports: [

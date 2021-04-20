@@ -10,9 +10,11 @@
         </div>
     </div>
     <div class="main">
-        <div class="searchU">
-            <input class="searchInput" [(ngModel)]="cliente" type="search" placeholder="Pesquise o cliente">
-            <button class="search" (click)="procura()">Pesquisar</button>
+        <div class="searchContent">
+            <div class="control">
+                <input class="searchInput" [(ngModel)]="cliente" type="search" placeholder="Pesquise o cliente">
+                <button class="search" (click)="procura()">Pesquisar</button>
+            </div>
             <table *ngIf="showAll==false" class="table" style="width: 60vw;">
                 <thead>
                     <tr class="tablel">
@@ -33,7 +35,6 @@
                     </tr>
                 </tbody>
             </table>
-            
         </div>
         <div class="users" *ngIf="showAll==true">
             <table class="table" style="width: 60vw;">

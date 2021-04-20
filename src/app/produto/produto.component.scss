@@ -12,7 +12,8 @@
 table{
     margin-bottom: 10vh;
     font-size: 20px;
-    color:white;
+    color:black;
+    margin: auto;
 }
 
 .tr td {
@@ -21,34 +22,52 @@ table{
 
 .steppercontrol{
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    position: absolute;
-    top:19%;
-    left: 50%;
-    transform: translateX(-50%);
-    img{
-        height: 7vh;
-        width: 15vw;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    top:-15vh;
+    svg{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 6vh;
+        width: 5vw;
     }
     
 }
 
 .step1{
     position: absolute;
-    right: 10%;
-    bottom: 24%;
+    left: 40%;
+    svg{
+        width: 5vw;
+    }
 }
 
 .step2{
     position: absolute;
-    left: 10%;
-    bottom: 24%;
+    right: 40%;
+    svg{
+        width: 5vw;
+    }
 }
 
 .stepOf{
     color: black;
     height: 6vh;
+}
+
+.stepper1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.prod{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15vh;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -65,10 +84,6 @@ input[type=number]::-webkit-outer-spin-button {
     text-indent: 10%;
 }
 
-.table{
-    width: 60vw;
-}
-
 .searchInput{
     border-radius: 15px;
     text-indent: 10%;
@@ -77,17 +92,17 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 ul li {
-    color:white;
+    color:black;
     list-style-type: none;
 }
 
 p{
-    color: white;
+    color: black;
     margin-bottom: 6vh;
 }
 
 h2 {
-    color: white;
+    color: black;
     margin-bottom: 6vh;
 }
 
@@ -127,20 +142,16 @@ mat-label{
 }
 
 .open{
-    width: 110px;
-    height: 50px;
-    background: transparent;
-    color:white;
-    border:none;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+    cursor: pointer;
+    font-size: 1.5vw;
 }
 
 .user{
     width: 100%;
     height: 100%;
-    color: white;
+    color: black;
     background-color: transparent;
     border-radius: 15px;
 }
@@ -148,7 +159,7 @@ mat-label{
 .cardapio{
     width: 15vw;
     height: 5vh;
-    color: white;
+    color: black;
     background-color: transparent;
     margin-top: 5vh;
 }
@@ -172,9 +183,12 @@ mat-label{
 }
 
 .button{
-    background-color: yellow;
-    border-radius: 15px;
-    height: 6vh;
+    text-align: center;
+    background-color:#4e98c2;
+    padding: 0.7vw 1vw 0.7vw 1vw;
+    color: white;
+    border-radius: 5px;
+    border: none;
 }
 
 .button:hover{
@@ -189,15 +203,44 @@ mat-label{
     background-color: transparent;
 }
 
-.carrinho{
+.cart{
     position: fixed;
     right: 3%;
     bottom: 5vh;
     height: 6vh;
     width: 4vw;
+    cursor: pointer;
 }
 
 .refresh{
     height: 6vh;    
     width: 4vw;
+}
+
+td{
+    vertical-align: middle;
+}
+
+.stepper2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.control{
+    display: flex;
+    flex-direction: row;
+    margin-top: 6vh;
+}
+
+.reroll{
+    background-color: #4e98c2;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    height: 6vh;
+    width: 4vw;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: none;
 }

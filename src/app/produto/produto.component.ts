@@ -7,6 +7,8 @@ import * as moment from 'moment';
 import { RenderService } from '../services/render.service';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { ProdDialogComponent } from './prod-dialog/prod-dialog.component';
+import { AdicionalDialogComponent } from './adicional-dialog/adicional-dialog.component';
+import { NullTemplateVisitor } from '@angular/compiler';
 
 @Component({
   selector: 'app-produto',
@@ -41,7 +43,11 @@ export class ProdutoComponent implements OnInit {
   public openP;
   public openA;
   public openD;
+  public ad: boolean = false;
   public message: string;
+  public addDialog;
+  public showCart;
+  public qntd:number = 0;
   constructor( private dialog: MatDialog, private renderService: RenderService,private productsService: ProductsService, private userService: UserService, private carrinhoS: CarrinhoService) { }
 
   ngOnInit(): void {
@@ -78,6 +84,44 @@ export class ProdutoComponent implements OnInit {
       this.vTotal = this.sub + (this.entrega ?? 0);
     };
 
+    reroll(){
+      this.step1=true;
+      this.step2=false;
+      this.step3=false;
+      this.user={     
+        nome1: null,
+        nome2: null,
+        nome3: null,
+        endereco: null,
+        ref: null,
+        phone: null
+      }
+      this.pedidoF= {
+        user: {},
+        payment: null,
+        vEntrega: null,
+        sub: null,
+        vTotal: null,
+        pedido: {},
+        desconto: null,
+        datahora: {
+            data: null,
+            hora: null
+        }
+      }
+    };
+
+    more(){
+      let qtd;
+      qtd ++;
+    };
+
+    less(){
+      let qtd;
+      qtd --;
+    }
+
+
     openProd(){
     this.openP = !this.openP;
     };
@@ -97,7 +141,10 @@ export class ProdutoComponent implements OnInit {
 
     addItem(product){
       this.produtos.push(product);
-      console.log(this.produtos);
+      this.calcSTotal();
+    };
+    
+    calcSTotal(){
       this.sub = 0;
       for(let i = 0; i < this.produtos.length; i++){
         this.sub = this.sub + this.produtos[i].preco;
@@ -105,7 +152,12 @@ export class ProdutoComponent implements OnInit {
         console.log(this.sub);
       };
     };
-    
+
+    add(product){
+      this.ad = true;
+      
+    };
+
     addCarrinho() {
       console.log(this.desconto);
       if(!this.desconto){
@@ -169,7 +221,7 @@ export class ProdutoComponent implements OnInit {
 
       this.dialog.open(ProdDialogComponent, {data: this.message});
     }
-      
+    
     excluiProduto(index) {
           this.produtos.splice(index, 1);
           this.carrinhoS.produtos.next(this.produtos);

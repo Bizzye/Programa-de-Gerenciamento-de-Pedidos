@@ -14,6 +14,7 @@ export class UserService {
       this.fire.collection("users").ref.limit(10).orderBy('id', 'desc').get().then(users => {
         let usersData = [];
         users.docs.map(user => usersData.push(user.data()));
+        console.log(users.docs.length);
         resolve(usersData);
       }).catch(err => {
         reject();
@@ -40,6 +41,9 @@ export class UserService {
               first.docs.map(doc => users.push(doc.data()));
               second.docs.map(doc => users.push(doc.data()));
               third.docs.map(doc => users.push(doc.data()));
+              console.log(first.docs.length);
+              console.log(second.docs.length);
+              console.log(third.docs.length);
               resolve(users);
             }).catch(err => {
               console.log(err);
@@ -60,6 +64,7 @@ export class UserService {
           .where('nome2', '==', secondName).get().then(user => {
             let users = [];
             user.docs.map(usr => users.push(usr.data()));
+            console.log(user.docs.length);
             resolve(users);
           }).catch(err => {
             console.log(err);
@@ -74,6 +79,7 @@ export class UserService {
           .where('nome3', '==', thirdName).get().then(user => {
             let users = [];
             user.docs.map(usr => users.push(usr.data()));
+            console.log(user.docs.length);
             resolve(users);
           }).catch(err => {
             console.log(err);
@@ -89,6 +95,7 @@ export class UserService {
       this.fire.collection('users').ref.where('phone', '==', phone).get().then(users => {
         let usersData = [];
         users.docs.map(user => usersData.push(user.data()));
+        console.log(users.docs.length);
         resolve(usersData);
       }).catch(err => {
         reject(err);
