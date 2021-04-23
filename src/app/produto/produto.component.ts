@@ -24,7 +24,8 @@ export class ProdutoComponent implements OnInit {
   public entrega: number = null;
   public user:{ nome1, nome2, nome3, endereco, ref, phone };
   public vTotal: number;
-  public pedido: {};
+  public product: any[] = [];
+  public adc: any[] = [];
   public pedidoF: {user: {}, payment, vEntrega, sub, vTotal, pedido: {}, desconto, datahora:{data,hora} };
   public qtd: number;
   public desconto: number = null;
@@ -33,9 +34,9 @@ export class ProdutoComponent implements OnInit {
   public cliente: string = '';
   public searchUsers: {};
   public showAll:boolean = true;
-  public productsA: { name, type, preco };
-  public productsB: { name, type, preco };
-  public productsP: { name, type, preco };
+  public productsA: any[] = [];
+  public productsB: { name, type, preco, qtd };
+  public productsP: { name, type, preco, qtd };
   public payment: any;
   public step1 = true;
   public step2;
@@ -43,7 +44,7 @@ export class ProdutoComponent implements OnInit {
   public openP;
   public openA;
   public openD;
-  public ad: boolean = false;
+  public PainelAD: boolean = false;
   public message: string;
   public addDialog;
   public showCart;
@@ -52,13 +53,16 @@ export class ProdutoComponent implements OnInit {
 
   ngOnInit(): void {
     this.productsService.getProductsB().then((products: any) => {
+      products.qtd = 0;
       this.productsB = products;
+      console.log(this.productsB);
     });
     this.productsService.getProductsP().then((products: any) => {
       this.productsP = products;
     });
     this.productsService.getProductsA().then((products: any) => {
       this.productsA = products;
+      console.log(this.productsA);
     });
       this.userService.getUsers().then((Users: any) => {
         this.users = Users;
@@ -85,9 +89,7 @@ export class ProdutoComponent implements OnInit {
     };
 
     reroll(){
-      this.step1=true;
-      this.step2=false;
-      this.step3=false;
+      this.stepper1();
       this.user={     
         nome1: null,
         nome2: null,
@@ -111,15 +113,32 @@ export class ProdutoComponent implements OnInit {
       }
     };
 
-    more(){
-      let qtd;
-      qtd ++;
+    more(i){
+      this.productsA[i].qtd ++; 
+      // for(i=0;i<this.adc.length;i++){
+      //   if(this.adc[i]==product){
+      //     this.adc.push(product);
+      //   }
+      //   else{
+      //     this.adc[i].qtd++;
+      //   }
+      //   console.log(this.adc);
+      // };
     };
 
-    less(){
-      let qtd;
-      qtd --;
-    }
+    less(i){
+      this.productsA[i].qtd --;
+      // for(i=0;i<this.adc.length;i++){
+      //   if(this.adc[i].qtd==0){
+      //   this.adc.splice(i, 1);
+      //   console.log(this.adc);
+      //   }
+      //   else if(this.adc[i]==product){
+      //     this.adc[i].qtd--;
+      //   };
+      //   console.log(this.adc);
+      // };
+    };
 
 
     openProd(){
@@ -141,11 +160,12 @@ export class ProdutoComponent implements OnInit {
 
     addItem(product){
       this.produtos.push(product);
-      this.calcSTotal();
+      // this.calcSTotal();
+      console.log(this.produtos);
     };
     
     calcSTotal(){
-      this.sub = 0;
+      this.sub ?? 0 ;
       for(let i = 0; i < this.produtos.length; i++){
         this.sub = this.sub + this.produtos[i].preco;
         this.sub = Number(this.sub.toFixed(2))
@@ -153,8 +173,31 @@ export class ProdutoComponent implements OnInit {
       };
     };
 
-    add(product){
-      this.ad = true;
+    addPrato(product){
+      this.product.push(product);
+      this.PainelAD = true;
+      console.log(this.product);
+    };
+
+    addAD(){
+      for(let i = 0; i < this.productsA.length; i++){
+        if(this.productsA[i].qtd>0){
+          let test = this.productsA[i];
+          this.adc.push(test);
+          console.log(this.adc);
+        };
+      };
+      const p = {
+        name: this.product[0].name,
+        preco: this.product[0].preco,
+        adc: this.adc
+      };
+      this.addItem(p);
+      console.log(this.produtos);
+      this.close();
+      this.PainelAD = false;
+      console.log(this);
+      // this.productsA.close();
       
     };
 
@@ -191,6 +234,15 @@ export class ProdutoComponent implements OnInit {
       console.log(this.pedidoF);
       this.carrinhoS.insertorder(this.pedidoF);
 
+    };
+
+    close(){
+      this.product = [];
+      this.adc = [];
+      for(let i = 0; i < this.productsA.length; i++){
+        this.productsA[i].qtd = 0;
+      };
+      this.PainelAD = false;
     };
 
     procura(){

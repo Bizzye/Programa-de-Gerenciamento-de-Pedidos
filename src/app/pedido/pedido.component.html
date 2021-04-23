@@ -1,7 +1,6 @@
 <div class="container">
         <div class="procura">
                 <div class="paged">
-                        <!--- <mat-paginator> -->
                                 <table class="table">
                                         <tbody>
                                                 <tr *ngFor="let item of pagedItems; index as i">
@@ -29,7 +28,6 @@
                                         <a (click)="setPage(pagination.totalPages)">Last</a>
                                     </li>
                                 </ul>
-                       <!-- </mat-paginator> --> 
                 </div>
         </div>
         <div class="pedido" *ngIf="showOrder==true">

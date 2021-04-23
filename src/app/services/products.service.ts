@@ -72,7 +72,7 @@ export class ProductsService {
 
   async removeProduct(id) {
     try {
-      return await this.fire.collection('product').doc(id).delete();
+      return await this.fire.collection('products').doc(id).delete();
     } catch (err) {
       console.log(err)
       return err
