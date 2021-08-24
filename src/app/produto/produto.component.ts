@@ -6,8 +6,6 @@ import { CarrinhoService } from '../services/carrinho.service';
 import * as moment from 'moment';
 import { RenderService } from '../services/render.service';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
-import { ProdDialogComponent } from './prod-dialog/prod-dialog.component';
-import { AdicionalDialogComponent } from './adicional-dialog/adicional-dialog.component';
 import { NullTemplateVisitor } from '@angular/compiler';
 
 @Component({
@@ -271,7 +269,7 @@ export class ProdutoComponent implements OnInit {
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
 
-      this.dialog.open(ProdDialogComponent, {data: this.message});
+      // this.dialog.open(ProdDialogComponent, {data: this.message});
     }
     
     excluiProduto(index) {

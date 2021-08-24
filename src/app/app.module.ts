@@ -17,9 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { VisupedidoComponent } from './pedido/visupedido/visupedido.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ProdDialogComponent } from './produto/prod-dialog/prod-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
-import { AdicionalDialogComponent } from './produto/adicional-dialog/adicional-dialog.component';
 
 
 @NgModule({
@@ -29,11 +27,9 @@ import { AdicionalDialogComponent } from './produto/adicional-dialog/adicional-d
     CardapioComponent,
     PedidoComponent,
     ProdutoComponent,
-    VisupedidoComponent,
-    ProdDialogComponent,
-    AdicionalDialogComponent
+    VisupedidoComponent
   ],
-  entryComponents: [ProdDialogComponent],
+  entryComponents: [],
   imports: [
     BrowserModule,
     AppRoutingModule,

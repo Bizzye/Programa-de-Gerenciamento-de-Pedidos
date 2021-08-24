@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "hakunapp"
+  "defaultProject": "hakunapp",
+  "cli": {
+    "analytics": false
+  }
 }

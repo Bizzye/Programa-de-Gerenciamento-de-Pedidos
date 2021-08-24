@@ -22,14 +22,16 @@ table{
 
 .steppercontrol{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    position: relative;
-    top:-15vh;
+    align-items: center;
+    position: absolute;
+    top: 15vh;
+    width: 62.1vw;
     svg{
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+        // position: absolute;
+        // left: 50%;
+        // transform: translateX(-50%);
         height: 6vh;
         width: 5vw;
     }
@@ -41,6 +43,7 @@ table{
     left: 40%;
     svg{
         width: 5vw;
+        min-width: 50px;
     }
 }
 
@@ -49,6 +52,7 @@ table{
     right: 40%;
     svg{
         width: 5vw;
+        min-width: 50px;
     }
 }
 
@@ -243,4 +247,17 @@ td{
     text-align: center;
     font-weight: bold;
     vertical-align: none;
+}
+
+.relative {
+    position: relative;
+}
+
+.start {
+    left: 0;
+    margin-right: 20px;
+}
+
+.end {
+    right: 0;
 }
