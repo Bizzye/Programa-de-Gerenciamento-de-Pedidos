@@ -56,6 +56,10 @@ table{
     }
 }
 
+.color4e {
+    color: #4e98c2;
+}
+
 .stepOf{
     color: black;
     height: 6vh;
@@ -237,6 +241,11 @@ td{
     margin-top: 6vh;
 }
 
+.frow {
+    display: flex;
+    flex-direction: row;
+}
+
 .reroll{
     background-color: #4e98c2;
     color: white;
@@ -260,4 +269,22 @@ td{
 
 .end {
     right: 0;
+}
+
+.fundo {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.fitcontent {
+    width: fit-content;
+}
+
+.mauto {
+    margin: 0 auto;
 }

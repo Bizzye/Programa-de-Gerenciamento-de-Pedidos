@@ -46,6 +46,7 @@ export class ProdutoComponent implements OnInit {
   public message: string;
   public addDialog;
   public showCart;
+  public coment = ''; 
   public qntd:number = 0;
   constructor( private dialog: MatDialog, private renderService: RenderService,private productsService: ProductsService, private userService: UserService, private carrinhoS: CarrinhoService) { }
 
@@ -178,6 +179,7 @@ export class ProdutoComponent implements OnInit {
     };
 
     addAD(){
+      console.log(this.coment)
       for(let i = 0; i < this.productsA.length; i++){
         if(this.productsA[i].qtd>0){
           let test = this.productsA[i];

@@ -26,7 +26,7 @@ export class ProductsService {
       this.fire.collection("products").ref.where('type','==','prato').get().then(products => {
         let productsData = [];
         products.docs.map(product => productsData.push(product.data()));
-        console.log(products.docs.length);
+        console.log(productsData);
         resolve(productsData);
       }).catch(err => {
         reject();

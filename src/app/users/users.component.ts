@@ -28,6 +28,7 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('aa')
     this.userService.getUsers().then((Users: any) => {
       this.users = Users;
       console.log(this.users)

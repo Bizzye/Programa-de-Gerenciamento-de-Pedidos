@@ -11,10 +11,10 @@ export class UserService {
 
   getUsers() {
     return new Promise((resolve, reject) => {
-      this.fire.collection("users").ref.limit(10).orderBy('id', 'desc').get().then(users => {
+      this.fire.collection("users").ref.orderBy('id', 'desc').limit(10).get().then(users => {
         let usersData = [];
+        console.log('usersData');
         users.docs.map(user => usersData.push(user.data()));
-        console.log(users.docs.length);
         resolve(usersData);
       }).catch(err => {
         reject();

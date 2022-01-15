@@ -1,14 +1,14 @@
 <div class="container">
     <div class="stepper">
         <div class="steppercontrol">
-            <div (click)="stepper1()" class="step1 relative start">
+            <div (click)="stepper1()" class="step1 relative start" [ngClass]="step1 ? 'color4e' : ''">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-diamond-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                         d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.482 1.482 0 0 1 0-2.098L6.95.435z" />
                 </svg>
             </div>
-            <div (click)="stepper2()" class="step2 relative end">
+            <div (click)="stepper2()" class="step2 relative end" [ngClass]="step2 ? 'color4e' : ''">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-diamond-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -171,7 +171,7 @@
         <div class="fundo">
             <div class="container">
                 <div class="close" (click)="close()">x</div>
-                <div (click)="openAD()" class="open">Adicionais</div>
+                <div (click)="openAD()" class="open button fitcontent mauto">Adicionais</div>
                 <table *ngIf="openA==true" class="tableP" style="width: 60vw;">
                     <thead>
                         <tr class="tablel">
@@ -184,16 +184,17 @@
                         <tr class="tr" *ngFor="let product of productsA; index as i">
                             <td>{{ product.name }}</td>
                             <td>R$ {{ product.preco | number:'1.2-2' }}</td>
-                            <td>
-                                <div class="button" type="button" (click)="less(i)" *ngIf="product.qtd>0">-</div>{{ product.qtd }}<div class="button"
-                                    type="button" (click)="more(i)">+</div>
+                            <td class="frow">
+                                <div class="button" type="button" (click)="less(i)" *ngIf="product.qtd>0">-</div>
+                                {{ product.qtd }}
+                                <div class="button" type="button" (click)="more(i)">+</div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="adicionar" (click)="addAD()">Adicionar!</div>
                 <h3>Algum Comentário?</h3>
-                <textarea name="" id="" cols="30" rows="10" placeholder=""></textarea>
+                <textarea name="" id="" cols="30" rows="5" placeholder="" [(ngModel)]="coment" ></textarea>
+                <div class="adicionar button fitcontent mauto" (click)="addAD()">Adicionar!</div>
             </div>
         </div>
     </div>
