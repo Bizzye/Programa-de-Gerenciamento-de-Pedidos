@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="stepper">
         <div class="steppercontrol">
             <div (click)="stepper1()" class="step1 relative start" [ngClass]="step1 ? 'color4e' : ''">
@@ -15,7 +15,6 @@
                         d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.482 1.482 0 0 1 0-2.098L6.95.435z" />
                 </svg>
             </div>
-            <!-- <div (click)="user ? stepper3() : null" [ngClass]="{'stepAc': step3, 'stepOf': !step3 }" class="step">Finalizar: </div> -->
         </div>
         <div class="stepper1" *ngIf="step1==true">
             <div class="prod">
@@ -52,7 +51,7 @@
                             <td>{{ product.name }}</td>
                             <td>R$ {{ product.preco | number:'1.2-2' }}</td>
                             <td>
-                                <div class="button" type="button" (click)="addItem(product)">Adicionar</div>
+                                <div class="button" type="button" (click)="addItemCarrinho(product)">Adicionar</div>
                             </td>
                         </tr>
                     </tbody>
@@ -169,9 +168,9 @@
     </div>
     <div class="dialog" *ngIf="PainelAD==true">
         <div class="fundo">
-            <div class="container">
+            <div class="adjust container">
                 <div class="close" (click)="close()">x</div>
-                <div (click)="openAD()" class="open button fitcontent mauto">Adicionais</div>
+                <div (click)="this.openA = !this.openA;" class="open button fitcontent mauto">Adicionais</div>
                 <table *ngIf="openA==true" class="tableP" style="width: 60vw;">
                     <thead>
                         <tr class="tablel">
@@ -197,4 +196,140 @@
                 <div class="adicionar button fitcontent mauto" (click)="addAD()">Adicionar!</div>
             </div>
         </div>
+    </div> -->
+
+<div class="container">
+    <div class="content">
+        <div class="controller">
+            <div (click)="step1 = true" [ngClass]="step1 ? 'color4e' : ''">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-diamond-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.482 1.482 0 0 1 0-2.098L6.95.435z" />
+                </svg>
+            </div>
+            <div (click)="step1 = false" [ngClass]="step1 ? '' : 'color4e'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-diamond-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.482 1.482 0 0 1 0-2.098L6.95.435z" />
+                </svg>
+            </div>
+        </div>
+
+        <div class="step1" *ngIf="step1">
+
+            <div (click)="this.openP = !this.openP;" class="open button">Pratos</div>
+
+            <table *ngIf="openP==true" class="tableP" style="width: 60vw;">
+                <thead>
+                    <tr class="tablel">
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr" *ngFor="let product of productsP; index as i">
+                        <td>{{ product.name }}</td>
+                        <td>R$ {{ product.preco | number:'1.2-2' }}</td>
+                        <td>
+                            <div class="button" type="button" (click)="addPrato(product)">Adicionar</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div (click)="this.openD = !this.openD;" class="open button">Bebidas</div>
+
+            <table *ngIf="openD==true" class="tableP" style="width: 60vw;">
+                <thead>
+                    <tr class="tablel">
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr" *ngFor="let product of productsB; index as i">
+                        <td>{{ product.name }}</td>
+                        <td>R$ {{ product.preco | number:'1.2-2' }}</td>
+                        <td>
+                            <div class="button" type="button" (click)="addItemCart(product)">Adicionar</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="step2" *ngIf="!step1">
+            
+        </div>
     </div>
+
+    <!-- Lateral -->
+    <div class="controllerLateral">
+        <div class="button reroll zerar" (click)="reroll()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
+                <path
+                    d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+            </svg>
+        </div>
+        <div class="button cart">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3"
+                viewBox="0 0 16 16">
+                <path
+                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </svg>
+        </div>
+    </div>
+    <div class="carrinho" *ngIf="showCart">
+        <h2>Carrinho</h2>
+        <div class="pedido">
+
+        </div>
+        <div class="desconto">
+
+        </div>
+        <div class="total">
+
+        </div>
+        <div class="finalizar">Finalizar pedido</div>
+    </div>
+</div>
+
+<div class="dialog" *ngIf="PainelAD==true">
+    <div class="fundo">
+        <div class="adjust container">
+            <div class="close" (click)="close()">x</div>
+            <div (click)="this.openA = !this.openA;" class="open button">Adicionais</div>
+            <div *ngIf="openA==true" class="tableP">
+                <div class="">
+                    <div class="tablel">
+                        <div>Nome</div>
+                        <div>Preço</div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="tr" *ngFor="let product of productsA; index as i">
+                    <div>{{ product.name }}</div>
+                    <div>R$ {{ product.preco | number:'1.2-2' }}</div>
+                    <div class="">
+                        <div class="button float_left fitContent" (click)="less(i)" [ngClass]="product.qtd > 0 ? '' : 'hidden' ">-</div>
+                        <div class="">
+                            {{ product.qtd }}
+                        </div>
+                        <div class="button float_right fitContent" (click)="more(i)">+</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Algum Comentário?</h3>
+            <textarea name="" id="" cols="30" rows="5" placeholder="" [(ngModel)]="coment" ></textarea>
+            <div class="adicionar button" (click)="addAD()">Adicionar!</div>
+        </div>
+    </div>
+</div> -->

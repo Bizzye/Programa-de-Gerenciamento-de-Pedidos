@@ -1,12 +1,45 @@
 .container {
-    margin-top: 15vh;
     display: flex;
     flex-direction: column;
+
+    width: 90%;
+    max-width: 900px;
+    margin: 70px auto;
+
     background-color: rgb(247, 247, 247);
     border-top: 5px solid #4e98c2;
-    border-radius: 5px;
-    min-height: 85vh;
-    width: 62.1vw;
+    border-radius: 5px;        
+    position: relative;
+
+    .controller{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+
+        width: 100%;
+        max-width: 900px;
+        height: 68px;
+
+        position: absolute;
+        top: -74px;
+        left: 0;
+        
+        svg{
+            height: 37.5px;
+            width: 37.5px;
+        }
+
+        div {
+
+            &:last-child {
+                margin-left: 50px;
+            }
+        }
+        
+        
+    }
 }
 
 table{
@@ -20,62 +53,14 @@ table{
     padding-top: 15px;
 }
 
-.steppercontrol{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 15vh;
-    width: 62.1vw;
-    svg{
-        // position: absolute;
-        // left: 50%;
-        // transform: translateX(-50%);
-        height: 6vh;
-        width: 5vw;
-    }
-    
-}
-
-.step1{
-    position: absolute;
-    left: 40%;
-    svg{
-        width: 5vw;
-        min-width: 50px;
-    }
-}
-
-.step2{
-    position: absolute;
-    right: 40%;
-    svg{
-        width: 5vw;
-        min-width: 50px;
-    }
-}
-
 .color4e {
     color: #4e98c2;
-}
-
-.stepOf{
-    color: black;
-    height: 6vh;
 }
 
 .stepper1{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.prod{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 15vh;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -130,7 +115,6 @@ mat-label{
 .desconto{
     width: 5vw;
 }
-/* Button's */
 
 .step{
     border-top-left-radius: 10px;
@@ -241,11 +225,6 @@ td{
     margin-top: 6vh;
 }
 
-.frow {
-    display: flex;
-    flex-direction: row;
-}
-
 .reroll{
     background-color: #4e98c2;
     color: white;
@@ -258,19 +237,6 @@ td{
     vertical-align: none;
 }
 
-.relative {
-    position: relative;
-}
-
-.start {
-    left: 0;
-    margin-right: 20px;
-}
-
-.end {
-    right: 0;
-}
-
 .fundo {
     width: 100vw;
     height: 100vh;
@@ -279,12 +245,4 @@ td{
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.2);
-}
-
-.fitcontent {
-    width: fit-content;
-}
-
-.mauto {
-    margin: 0 auto;
 }

@@ -3,12 +3,12 @@
     background-color:#1b2129;
     text-align: center;
     width: 100%;
-    min-height: 12vh;
+    // min-height: 60px;
+    padding: 10px 0;
 }
 
 .top .logo {
-    max-height: 65px;
-    margin-top: 1vh;
+    max-height: 45px;
 }
 
 
@@ -74,12 +74,9 @@ li:hover{
     justify-content: space-between;
 }
 .components {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background-color:#ecf0f5;
+    // background-color:#ecf0f5;
     width: 100%;
-    min-height: 88vh;
+    // height: 100%;
 }
 
 nav a{
