@@ -1,20 +1,37 @@
-<div class="top">
-    <div class="button" (click)="abrirMenu()">
+<header>
+    <div class="button navButton" aria-expanded="false" (click)="abrirMenu()" aria-controls="primary-navigation">
         <img class="checmenu" src="../assets/img/menu.png">
+        <span class="sr-only">
+            Menu
+        </span>
     </div>
     <a routerLink="produto">
         <img class="logo" src="assets/img/logo.png" alt="logo">
     </a>
-</div>
+</header>
+
+<!-- <button   (click)="abrirMenu()" class="navButton">
+    
+</button> -->
+
 <div class="content">
-    <nav *ngIf="open == true">
-        <ul>
-            <li><a routerLink="cardapio">Cárdapio</a></li>
-            <li><a routerLink="user">Adicionar Cliente</a></li>
-            <li><a routerLink="pedido">Pedidos</a></li>
-            <li><a routerLink="produto">Novo Pedido</a></li>
+    <nav>
+        <ul id="primary-navigation" class="primary-navigation" data-visible="false">
+            <li>
+                <a routerLink="cardapio">Cárdapio</a>
+            </li>
+            <li>
+                <a routerLink="user">Adicionar Cliente</a>
+            </li>
+            <li>
+                <a routerLink="pedido">Pedidos</a>
+            </li>
+            <li>
+                <a routerLink="produto">Novo Pedido</a>
+            </li>
         </ul>
     </nav>
+
     <div class="components">
         <router-outlet></router-outlet>
     </div>

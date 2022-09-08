@@ -7,15 +7,14 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from 'src/environments/environment';
-import { UsersComponent } from './users/users.component';
-import { CardapioComponent } from './cardapio/cardapio.component';
-import { PedidoComponent } from './pedido/pedido.component';
+import { UsersComponent } from './components/users/users.component';
+import { CardapioComponent } from './components/cardapio/cardapio.component';
+import { PedidoComponent } from './components/pedido/pedido.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ProdutoComponent } from './produto/produto.component';
+import { ProdutoComponent } from './components/produto/produto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { VisupedidoComponent } from './pedido/visupedido/visupedido.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 
@@ -26,8 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
     UsersComponent,
     CardapioComponent,
     PedidoComponent,
-    ProdutoComponent,
-    VisupedidoComponent
+    ProdutoComponent
   ],
   entryComponents: [],
   imports: [

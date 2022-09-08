@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
-
-import { sortAndDeduplicateDiagnostics } from 'typescript';
+import { UserService } from '../../services/users/user.service';
 
 @Component({
   selector: 'app-users',

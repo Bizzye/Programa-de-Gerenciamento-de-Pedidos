@@ -1,9 +1,9 @@
 import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CardapioComponent } from './cardapio/cardapio.component';
-import { PedidoComponent } from './pedido/pedido.component';
-import { ProdutoComponent } from './produto/produto.component';
-import { UsersComponent } from './users/users.component';
+import { CardapioComponent } from './components/cardapio/cardapio.component';
+import { PedidoComponent } from './components/pedido/pedido.component';
+import { ProdutoComponent } from './components/produto/produto.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   { path: 'cardapio', component: CardapioComponent },

@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
-import { CarrinhoService } from '../services/carrinho.service';
-import { PaginatorService } from '../services/paginator.service';
-import { ProductsService } from '../services/products.service';
-import { UserService } from '../services/user.service';
+import { CarrinhoService } from '../../services/carrinho/carrinho.service';
+import { PaginatorService } from '../../services/paginator/paginator.service';
+import { ProductsService } from '../../services/products/products.service';
+import { UserService } from '../../services/users/user.service';
 
 
 @Component({

@@ -1,12 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 
-import { ProductsService } from '../services/products.service';
-import { UserService} from '../services/user.service';
-import { CarrinhoService } from '../services/carrinho.service';
+import { ProductsService } from '../../services/products/products.service';
+import { UserService} from '../../services/users/user.service';
+import { CarrinhoService } from '../../services/carrinho/carrinho.service';
 import * as moment from 'moment';
-import { RenderService } from '../services/render.service';
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
-import { NullTemplateVisitor } from '@angular/compiler';
+import { RenderService } from '../../services/render/render.service';
 
 @Component({
   selector: 'app-produto',
