@@ -31,7 +31,6 @@
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",
     "@types/electron": "^1.6.10",
-    "angular-paginator": "^6.0.0",
     "bootstrap": "^4.5.3",
     "bootstrap-icons": "^1.4.1",
     "buffer": "^6.0.3",
