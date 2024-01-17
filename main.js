@@ -1,6 +1,8 @@
 // "@ng-bootstrap/ng-bootstrap": "^7.0.0",
 // "@angular/fire": "^6.0.2",
 // "angular-paginator": "^6.0.0",
+// "@angular/material": "^10.2.7",
+// "@angular/cdk": "^10.2.7",
 
 const { app, BrowserWindow, ipcMain } = require('electron')
 // const  electronInstaller  =  require ( 'electron-winstaller' ) ;
