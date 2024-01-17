@@ -20,28 +20,27 @@ import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UsersComponent,
-    CardapioComponent,
-    PedidoComponent,
-    ProdutoComponent
-  ],
-  entryComponents: [],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    FormsModule,
-    NgbModule,
-    BrowserAnimationsModule,
-    MatPaginatorModule,
-    MatDialogModule,
-    MatSelectModule
-  ],
-  providers: [],
-  exports:[ ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        UsersComponent,
+        CardapioComponent,
+        PedidoComponent,
+        ProdutoComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
+        FormsModule,
+        NgbModule,
+        BrowserAnimationsModule,
+        MatPaginatorModule,
+        MatDialogModule,
+        MatSelectModule
+    ],
+    providers: [],
+    exports: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
