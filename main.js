@@ -1,3 +1,6 @@
+// "@ng-bootstrap/ng-bootstrap": "^7.0.0",
+// "@angular/fire": "^6.0.2",
+
 const { app, BrowserWindow, ipcMain } = require('electron')
 // const  electronInstaller  =  require ( 'electron-winstaller' ) ;
 
