@@ -4,20 +4,18 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { AngularFireModule } from "@angular/fire";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
 import { environment } from 'src/environments/environment';
 import { UsersComponent } from './components/users/users.component';
 import { CardapioComponent } from './components/cardapio/cardapio.component';
 import { PedidoComponent } from './components/pedido/pedido.component';
 import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProdutoComponent } from './components/produto/produto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-
 
 @NgModule({
     declarations: [
@@ -33,7 +31,6 @@ import { MatSelectModule } from '@angular/material/select';
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFirestoreModule,
         FormsModule,
-        NgbModule,
         BrowserAnimationsModule,
         MatPaginatorModule,
         MatDialogModule,

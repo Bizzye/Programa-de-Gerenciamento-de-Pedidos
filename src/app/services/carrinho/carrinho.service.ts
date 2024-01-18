@@ -1,18 +1,14 @@
 import { Injectable } from '@angular/core';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarrinhoService {
 
-  private listaProdutos: any[] = [];
-  public produtos = new BehaviorSubject([]);
-
-  constructor(private fire: AngularFirestore) { }
+  constructor(
+    private fire: AngularFirestore
+  ) { }
 
   getOrders() {
     return new Promise((resolve, reject) => {

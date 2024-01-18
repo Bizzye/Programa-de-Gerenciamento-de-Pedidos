@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
-import { AngularFirestore } from '@angular/fire/firestore';
-import { UserService } from './services/users/user.service';
 //import { ipcMain, } from 'electron';
 
 @Component({
@@ -15,10 +12,7 @@ export class AppComponent implements OnInit {
   open: boolean = false;
 
 
-  constructor(
-    private fire: AngularFirestore,
-    private user: UserService
-  ) {}
+  constructor() {}
 
   ngOnInit() {
   }

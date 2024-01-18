@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "hakunapp-9281a"
+  },
+  "targets": {
+    "hakunapp-9281a": {
+      "hosting": {
+        "hakunapp": [
+          "hakunapp-9281a"
+        ]
+      }
+    }
   }
 }

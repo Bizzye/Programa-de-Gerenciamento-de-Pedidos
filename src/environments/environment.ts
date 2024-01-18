@@ -1,5 +1,15 @@
 
 export const environment = {
+  firebase: {
+    projectId: 'hakunapp-9281a',
+    appId: '1:402851893367:web:1f7d9e791cab57d46eb672',
+    storageBucket: 'hakunapp-9281a.appspot.com',
+    locationId: 'us-central',
+    apiKey: 'AIzaSyAATAxeUS8GSHulnFLiLhbcFbXRMCxesxo',
+    authDomain: 'hakunapp-9281a.firebaseapp.com',
+    messagingSenderId: '402851893367',
+    measurementId: 'G-G11KX80QD9',
+  },
   production: true,
   firebaseConfig : {
     apiKey: "AIzaSyC7iPoiWNinKPqdD95hByTdDSLXjfIaPf0",
