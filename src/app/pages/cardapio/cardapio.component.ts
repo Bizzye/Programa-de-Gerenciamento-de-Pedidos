@@ -19,9 +19,9 @@ export class CardapioComponent implements OnInit {
   public productsF: {};
   
 
-  constructor(private productsService: ProductsService) { 
-   
-    }
+  constructor(
+    private productsService: ProductsService
+  ) { }
   
 
   ngOnInit(): void {
