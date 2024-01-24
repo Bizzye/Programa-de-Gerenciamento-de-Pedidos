@@ -8,8 +8,8 @@ describe('CardapioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CardapioComponent ]
-    })
+    declarations: [CardapioComponent]
+})
     .compileComponents();
   });
 

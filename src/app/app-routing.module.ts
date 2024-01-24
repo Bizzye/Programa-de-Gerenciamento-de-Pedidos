@@ -7,7 +7,7 @@ import { UsersComponent } from './pages/users/users.component';
 
 const routes: Routes = [
   { path: 'cardapio', component: CardapioComponent },
-  { path: 'user', component: UsersComponent },
+  { path: 'users', component: UsersComponent },
   { path: 'pedido', component: PedidoComponent },
   { path: 'produto', component: ProdutoComponent }
 ];

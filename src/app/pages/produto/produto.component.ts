@@ -5,12 +5,15 @@ import { UserService} from '../../services/users/user.service';
 import { CarrinhoService } from '../../services/carrinho/carrinho.service';
 import * as moment from 'moment';
 import { RenderService } from '../../services/render/render.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-produto',
   templateUrl: './produto.component.html',
   styleUrls: ['./produto.component.scss'],
-  providers: []
+  standalone: true,
+  imports: [ CommonModule, FormsModule ]
 })
 export class ProdutoComponent implements OnInit {
 

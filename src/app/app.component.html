@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
     <div class="button navButton" aria-expanded="false" (click)="abrirMenu()" aria-controls="primary-navigation">
         <img class="checmenu" src="../assets/img/menu.png">
         <span class="sr-only">
@@ -9,10 +9,6 @@
         <img class="logo" src="assets/img/logo.png" alt="logo">
     </a>
 </header>
-
-<!-- <button   (click)="abrirMenu()" class="navButton">
-    
-</button> -->
 
 <div class="content">
     <nav>
@@ -35,4 +31,10 @@
     <div class="components">
         <router-outlet></router-outlet>
     </div>
+</div> -->
+
+<div class="bg-[#f7f7f7] h-screen w-screen fixed inset-0">
+    <router-outlet></router-outlet>
 </div>
+<app-menu></app-menu>
+<app-sidebar></app-sidebar>

@@ -7,24 +7,19 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
 import { environment } from 'src/environments/environment';
-import { UsersComponent } from './pages/users/users.component';
-import { CardapioComponent } from './pages/cardapio/cardapio.component';
-import { PedidoComponent } from './pages/pedido/pedido.component';
 import { FormsModule } from '@angular/forms';
-import { ProdutoComponent } from './pages/produto/produto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { NgxMaskDirective, provideEnvironmentNgxMask, NgxMaskPipe } from 'ngx-mask';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        UsersComponent,
-        CardapioComponent,
-        PedidoComponent,
-        ProdutoComponent
+        AppComponent
     ],
     imports: [
         BrowserModule,
@@ -35,9 +30,14 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
         BrowserAnimationsModule,
         MatPaginatorModule,
         MatDialogModule,
-        MatSelectModule
+        MatSelectModule,
+        SidebarComponent,
+        MenuComponent,
+        SweetAlert2Module.forRoot()
     ],
-    providers: [],
+    providers: [
+        provideEnvironmentNgxMask(),
+    ],
     exports: [],
     bootstrap: [AppComponent]
 })

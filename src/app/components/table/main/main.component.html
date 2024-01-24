@@ -1,0 +1,15 @@
+<div class="w-full p-5 max-h-[75vh] overflow-auto" *ngIf="list$ | async as list; else loading">
+    <ng-container *ngIf="list.length > 0; else noItens">
+        <app-users-header-table></app-users-header-table>
+        <app-users-item-table *ngFor="let item of list; index as i" [item]="item" [lastItem]="list.length -1 == i"></app-users-item-table>
+    </ng-container>
+
+    <ng-template #noItens>
+        Sem clientes cadastrados.
+    </ng-template>
+</div>
+
+<ng-template #loading>
+    Carregando...
+</ng-template>
+

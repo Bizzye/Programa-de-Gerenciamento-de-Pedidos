@@ -1,0 +1,9 @@
+<div class="flex w-full h-full">
+    <div class="w-1/5 font-bold text-left px-1 text-base border-solid border-r border-l border-t border-gray-300 py-2" [class]="lastItem ? 'border-b' : ''" >{{ item.nome1 + ' ' + (item.nome2 ? item.nome2 : '') + ' ' + (item.nome3 ? item.nome3 : '')  }}</div>
+    <div class="w-1/5 font-bold text-left px-1 text-base border-solid border-r border-t border-gray-300 py-2" [class]="lastItem ? 'border-b' : ''" >{{ item.phone | mask: "0000-0000" }}</div>
+    <div class="w-1/5 font-bold text-left px-1 text-base border-solid border-r border-t border-gray-300 py-2" [class]="lastItem ? 'border-b' : ''" >{{ item.endereco }}</div>
+    <div class="w-1/5 font-bold text-left px-1 text-base border-solid border-r border-t border-gray-300 py-2" [class]="lastItem ? 'border-b' : ''" >{{ item.ref }}</div>
+    <div class="w-1/5 font-bold text-left px-1 text-base border-solid border-r border-t border-gray-300 py-2" [class]="lastItem ? 'border-b' : ''" > 
+        <!-- <button type="button">Remover</button> -->
+    </div>
+</div>

@@ -5,5 +5,4 @@ export interface IMenuItem {
     title: string;
     link: string;
     linkType: "internal" | "external";
-    type: string[];
 }

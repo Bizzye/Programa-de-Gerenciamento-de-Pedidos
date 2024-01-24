@@ -1,17 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/users/user.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MainComponent } from 'src/app/components/table/main/main.component';
+
+import { SwalPortalTargets, SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { ICustomer } from 'src/app/interfaces/customer/customer.interface';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  styleUrls: ['./users.component.scss'],
+  standalone: true,
+  imports: [ CommonModule, FormsModule, MainComponent, SweetAlert2Module ],
+
 })
 export class UsersComponent implements OnInit {
 
   public endereco: string = '';
-  public phone: number;
+  public phone: number = null;
   public nome: string  = '';
-  public users: { nome1, nome2, nome3, endereco, phone, id, ref};
+  public users: ICustomer;
   public ref: string = '';
   public splitado = [];
   public teste: string;
@@ -19,21 +29,18 @@ export class UsersComponent implements OnInit {
   public searchUsers: {};
   public showAll: boolean = true;
 
-  
+  users$: Observable<ICustomer[] | null> = new BehaviorSubject(null);
 
-  constructor(private userService: UserService) { 
-    
-  }
+  constructor(
+    private _users: UserService,
+    public readonly swalTargets: SwalPortalTargets
+  ) { }
 
   ngOnInit(): void {
-    console.log('aa')
-    this.userService.getUsers().then((Users: any) => {
-      this.users = Users;
-      console.log(this.users)
-    });
+    this.users$ = this._users.getCustomer();
   }
 
-  addUser() {
+  addCustomer() {
     this.splitado = this.nome.split(" ",3);
     let nome1 = this.splitado[0];
     let nome2;
@@ -57,48 +64,35 @@ export class UsersComponent implements OnInit {
       nome1, 
       nome2, 
       nome3,
+      fullName: this.nome.split(' '),
       endereco: this.endereco,
       phone: this.phone,
       ref: this.ref
     };
 
-    this.userService.insertUser(User).then(d => {
-      this.userService.getUsers().then((Users: any) => {
+    this._users.insertUser(User).then(d => {
+      this._users.getUsers().then((Users: any) => {
         this.users = Users;
       });
     });
 
   }
 
-  procura(){
-  if(this.cliente.length > 0){
-    if(!parseInt(this.cliente)){
-        this.userService.searchUserByName(this.cliente).then((Users: any ) => {
-          this.searchUsers = Users;
-          console.log(this.searchUsers);
-          this.showAll = false;
-        });
-      } else if(parseInt(this.cliente)){
-        this.userService.searchUserByPhone(this.cliente).then((Users: any ) => {
-          this.searchUsers = Users;
-          console.log(this.cliente);
-          console.log(this.searchUsers);
-          this.showAll = false;
-        });}
-    } else{
-      this.showAll = true;
+  search(){
+    if(this.cliente.length < 1 || !this.cliente) {
+      return
     }
-  }
 
-  removeUser(id) {
-    this.userService.removeUser(id).then(d => {
-      this.userService.getUsers().then((Users: any) => {
-        this.users = Users
-        console.log(this.users)
-        this.teste = id;
-        console.log(this.teste)
-      });
+    // this.users$ = 
+    this._users.searchCustomer(this.cliente).subscribe(i => {
+      console.log(i)
     });
   }
-  
+
+  resetData() {
+    this.nome = '';
+    this.endereco = '';
+    this.phone = null;
+    this.ref = '';
+  }  
 }

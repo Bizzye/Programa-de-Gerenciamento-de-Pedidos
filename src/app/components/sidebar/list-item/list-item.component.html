@@ -1,4 +1,4 @@
-<a (click)="openLink(item.link)" [class]="router.url.includes(item.link) ? 'text-color1' : 'text-gray-400'"
+<a (click)="openLink(item.link)" [class]="router.url.includes(item.link) ? 'text-black' : 'text-gray-400'"
     class="cursor-pointer hover:text-color1 group flex gap-x-3 rounded-md p-4 text-xl leading-6 font-semibold">
     <div *ngIf="item.icon" [innerHTML]="item.icon">
     </div>

@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { ProductsService } from '../../services/products/products.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 moment.locale('pt-BR')
 @Component({
   selector: 'app-cardapio',
   templateUrl: './cardapio.component.html',
-  styleUrls: ['./cardapio.component.scss']
+  styleUrls: ['./cardapio.component.scss'],
+  standalone: true,
+  imports: [ CommonModule, FormsModule ]
 })
 export class CardapioComponent implements OnInit {
 

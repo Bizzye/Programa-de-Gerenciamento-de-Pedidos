@@ -3,26 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { height: 100%; }
+@layer components {
+  .container {
+    @apply mx-auto mt-16 h-full w-11/12 max-w-7xl
+  }
 
-body { 
-  margin: 0; 
-  font-family: Roboto, "Helvetica Neue", sans-serif; 
-  padding: 0px; 
-  box-sizing: border-box; 
-  outline: none; 
-  overflow-x: hidden;
-  background-color:#ecf0f5;
-  width: 100%;
+  .border-default {
+    @apply border-t-4 border-solid border-blue rounded-md
+  }
 }
 
-.container {
-  width: 90%;
-  max-width: 1180px;
-}
-
-.hidden {
-  display: none;
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .flexr {
@@ -69,5 +61,3 @@ input[type=number]::-webkit-outer-spin-button {
   white-space: nowrap; 
   width: 1px;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

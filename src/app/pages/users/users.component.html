@@ -1,63 +1,49 @@
-<div class="container">
-    <div class="adicionarItem">
-        <h3>Adicionar Cliente</h3>
-        <div class="form">
+<div class="border-default container bg-white">
+    <div class="flex w-full my-6 relative">
+        <div class="flex gap-3 mx-auto">
+            <div class="relative">
+                <input class="rounded-md border border-blue border-solid px-2 h-full outline-none" [(ngModel)]="cliente" type="text" placeholder="Pesquise o cliente" (keyup.enter)="search()">
+                <span class="absolute right-3 top-1/2 -translate-y-1/2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15.248" height="15.248" viewBox="0 0 15.248 15.248">
+                        <path id="Mask" d="M14.3,15.248a.944.944,0,0,1-.672-.278l-3-3A6.649,6.649,0,0,1,0,6.649a6.649,6.649,0,1,1,13.3,0,6.589,6.589,0,0,1-1.324,3.982l3,3a.95.95,0,0,1-.671,1.622ZM6.649,1.9A4.749,4.749,0,1,0,11.4,6.649,4.755,4.755,0,0,0,6.649,1.9Z" transform="translate(0 0)" fill="#666"/>
+                    </svg>
+                </span>
+            </div>
+            <button class="text-center bg-blue text-white rounded-md border border-transparent border-solid py-1 px-6 text-lg hover:bg-white hover:border-blue hover:text-blue transition-all duration-300" (click)="search()">
+                Pesquisar
+            </button>
+        </div>
+        <div class="absolute right-5 h-full">
+            <button class="text-center h-full bg-blue text-white rounded-md border border-transparent border-solid py-1 px-6 text-lg hover:bg-white hover:border-blue hover:text-blue transition-all duration-300" (click)="addCustomer.fire()">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="16" height="16">
+                    <g>
+                        <path fill="currentColor" d="M490.667,234.667H448V192c0-11.782-9.551-21.333-21.333-21.333c-11.782,0-21.333,9.551-21.333,21.333v42.667h-42.667   c-11.782,0-21.333,9.551-21.333,21.333c0,11.782,9.551,21.333,21.333,21.333h42.667V320c0,11.782,9.551,21.333,21.333,21.333   c11.782,0,21.333-9.551,21.333-21.333v-42.667h42.667c11.782,0,21.333-9.551,21.333-21.333   C512,244.218,502.449,234.667,490.667,234.667z"/>
+                        <circle cx="192" cy="128" r="128" fill="currentColor"/>
+                        <path d="M192,298.667c-105.99,0.118-191.882,86.01-192,192C0,502.449,9.551,512,21.333,512h341.333   c11.782,0,21.333-9.551,21.333-21.333C383.882,384.677,297.99,298.784,192,298.667z" fill="currentColor"/>
+                    </g>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <app-table type="User" [list$]="users$"></app-table>
+
+    <swal #addCustomer
+        title="Adicionar Cliente"
+        [showConfirmButton]="true" 
+        [showCancelButton]="true"
+        confirmButtonText="Adicionar"
+        cancelButtonText="Cancelar" 
+        (confirm)="addCustomer()"
+        (deny)="resetData()"
+        (dismiss)="resetData()"
+    >
+        <div *swalPortal="swalTargets.content" class="form">
             <input [(ngModel)]="nome" type="text" placeholder="Nome" />
             <input [(ngModel)]="phone" type="tel" placeholder="Telefone" />
             <input [(ngModel)]="endereco" type="text" id="endereco" placeholder="Insira o endereço">
             <input [(ngModel)]="ref" type="text" placeholder="Ponto de referência" (keyup.enter)="addUser()"/>
-            <button (click)="addUser()">Adicionar</button>
+            <button (click)="addCustomer()">Adicionar</button>
         </div>
-    </div>
-    <div class="main">
-        <div class="searchContent">
-            <div class="control">
-                <input class="searchInput" [(ngModel)]="cliente" type="search" placeholder="Pesquise o cliente">
-                <button class="search" (click)="procura()">Pesquisar</button>
-            </div>
-            <table *ngIf="showAll==false" class="table" style="width: 60vw;">
-                <thead>
-                    <tr class="tablel">
-                        <th scope="col">Nome</th>
-                        <th scope="col">Telefone</th>
-                        <th scope="col">Endereço</th>
-                        <th scope="col">Ponto de referência</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="tr" *ngFor="let user of searchUsers; index as i">
-                        <td>{{ user.nome1 + ' ' + (user.nome2 ? user.nome2 : '') + ' ' + (user.nome3 ? user.nome3 : '')  }}</td>
-                        <td>{{ user.phone }}</td>
-                        <td>{{ user.endereco }}</td>
-                        <td>{{ user.ref }}</td>
-                        <td> <button type="button" (click)="removeUser(user.id)">Remover</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="users" *ngIf="showAll==true">
-            <table class="table" style="width: 60vw;">
-                <thead>
-                    <tr class="tablel">
-                        <th scope="col">Nome</th>
-                        <th scope="col">Telefone</th>
-                        <th scope="col">Endereço</th>
-                        <th scope="col">Ponto de referência</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="tr" *ngFor="let user of users; index as i">
-                        <td>{{ user.nome1 + ' ' + (user.nome2 ? user.nome2 : '') + ' ' + (user.nome3 ? user.nome3 : '')  }}</td>
-                        <td>{{ user.phone }}</td>
-                        <td>{{ user.endereco }}</td>
-                        <td>{{ user.ref }}</td>
-                        <td> <button type="button" (click)="removeUser(user.id)">Remover</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    </swal>
 </div>

@@ -4,12 +4,16 @@ import { CarrinhoService } from '../../services/carrinho/carrinho.service';
 import { PaginatorService } from '../../services/paginator/paginator.service';
 import { ProductsService } from '../../services/products/products.service';
 import { UserService } from '../../services/users/user.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-pedido',
   templateUrl: './pedido.component.html',
-  styleUrls: ['./pedido.component.scss']
+  styleUrls: ['./pedido.component.scss'],
+  standalone: true,
+  imports: [ CommonModule, FormsModule ]
 })
 export class PedidoComponent implements OnInit, OnChanges {
 

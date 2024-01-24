@@ -1,6 +1,5 @@
-<!-- Mobile -->
 <div class="fixed inset-0 bg-black/80 z-[45]" (click)="_menu.closeMenu()" *ngIf="(stateMenu | async) == true"></div>
-<div class="fixed z-50 xl:hidden primary-navigation" role="dialog" aria-modal="true" data-visible="false">
+<div class="fixed z-50 primary-navigation" role="dialog" aria-modal="true" data-visible="false">
     <div class="fixed inset-0"></div>
 
     <div class="fixed inset-0 grid grid-cols-[max(90%,_20rem)_1fr] bg-transparent navButton">
@@ -19,8 +18,8 @@
             <!-- Sidebar component, swap this element with another sidebar if you like -->
             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 ring-1 ring-white/10">
                 <div class="flex h-16 shrink-0 items-center justify-center mt-4">
-                    <img class="h-16 w-auto" src="assets/shared/LogoBranca.png"
-                        alt="English Place">
+                    <img class="h-16 w-auto" src="assets/img/logo.png"
+                        alt="Hakuna Batata">
                 </div>
                 <nav class="flex flex-1 flex-col">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -36,6 +35,5 @@
                 </nav>
             </div>
         </div>
-        <!-- <div class="relative w-full bg-red-700">a</div> -->
     </div>
 </div>
